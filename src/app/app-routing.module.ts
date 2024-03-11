@@ -16,7 +16,7 @@ const routes: Routes = [
   loadChildren: () => import('./pages/homepage/homepage.module').then(m => m.HomepageModule)
 },
 {
-  path: 'welcomeUser', loadChildren: () => import('./pages/welcome-user/welcome-user.module').then(m => m.WelcomeUserModule),
+  path: 'welcomeUser/:id', loadChildren: () => import('./pages/welcome-user/welcome-user.module').then(m => m.WelcomeUserModule),
   canActivate: [WelcomeGuard],
   canActivateChild: [WelcomeGuard]
 },

@@ -100,7 +100,7 @@ export class LoginComponent {
 
       if(data.user.ruolo === 'USER'){
         this.authSvc.isLoggedIn$.subscribe(res=>{})
-        this.router.navigate(['../../welcomeUser']);
+        this.router.navigate(['../../welcomeUser/'+data.user.id]);
       }else if(data.user.ruolo === 'ADMIN'){
         this.authSvc.isLoggedIn$.subscribe(res=>{})
         this.router.navigate(['../../welcomeAdmin']);
