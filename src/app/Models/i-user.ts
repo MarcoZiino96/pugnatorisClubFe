@@ -6,5 +6,5 @@ export interface IUser {
   nome: string;
   cognome: string;
   email: string;
-  avatar: string;
+  fotoProfilo: string;
 }

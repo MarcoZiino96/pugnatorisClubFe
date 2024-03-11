@@ -7,6 +7,7 @@ import { environment } from '../../environments/environment.development';
 import { ILogin } from '../Models/i-login';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
+import { IUser } from '../Models/i-user';
 
 @Injectable({
   providedIn: 'root'
@@ -63,5 +64,9 @@ export class AuthService {
 
     this.autoLogout(accessData.accessToken)
     this.authSubject.next(accessData)
+  }
+
+  getById(id:number){
+    return this.http.get<IUser>(`${environment.backEndUrl}/utente/${id}`)
   }
 }
