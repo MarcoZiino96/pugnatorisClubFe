@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img class="nav-logo" src="../../../assets/pugnatoris-club-logo.jpg" alt="logo">
+    </a>
+    <button (click)="collapsed = !collapsed" class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+      aria-label="Toggle navigation">
+
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div [ngClass]="{show:collapsed}" class="collapse navbar-collapse show" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/homepage">Home</a>
+        </li>
+        <div *ngIf="!isLoggedIn$">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="auth/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="auth/register">Register</a>
+          </li>
+        </div>
+        <div *ngIf="isLoggedIn$" >
+        <li class="nav-item dropdown">
+          <a (click)="collapsedDrop = !collapsedDrop" class="nav-link dropdown-toggle" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Categorie
+          </a>
+          <ul [ngClass]="{show:collapsedDrop}" class="dropdown-menu">
+            <li><a class="dropdown-item">scsdxsaasc</a></li>
+            <li><a class="dropdown-item">scsdxsaasc</a></li>
+            <li><a class="dropdown-item">scsdxsaasc</a></li>
+          </ul>
+        </li>
+        <button (click)="logOut()" class="btn btn-danger me-5">Logout
+        </button>
+        </div>
+      </ul>
+    </div>
+  </div>
+</nav>
