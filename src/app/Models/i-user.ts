@@ -7,5 +7,5 @@ export interface IUser {
   cognome: string;
   email: string;
   fotoProfilo: string;
-  dataNascita: boolean;
+  dataNascita: Date;
 }

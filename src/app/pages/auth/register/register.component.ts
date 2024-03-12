@@ -162,9 +162,9 @@ export class RegisterComponent {
     const registerData: any = this.registerForm.value
     registerData.dataNascita = new Date(registerData.dataNascita)
     delete registerData.confirmPassword
-    console.log(this.registerForm);
     this.authSvc.signUp(this.registerForm.value).subscribe(res =>{
     this.registered = true
     });
 }
+
 }

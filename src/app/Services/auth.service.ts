@@ -72,4 +72,8 @@ export class AuthService {
   getById(id:number):Observable<IResponseData> | undefined{
     return this.http.get<IResponseData>(`${environment.backEndUrl}/utente/${id}`)
   }
+
+  edit(id:number,bodyRequest:IRegister):Observable<IResponseData> | undefined{
+    return this.http.put<IResponseData>(`${environment.backEndUrl}/utente/edit/${id}`, bodyRequest)
+  }
 }

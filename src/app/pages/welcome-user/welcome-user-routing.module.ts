@@ -8,7 +8,7 @@ const routes: Routes = [
    path: '', component: WelcomeUserComponent
 },
 {
-  path: 'edit', component: EditComponent, title: 'Edit - PugnatorisClub'
+  path: 'edit/:id', component: EditComponent, title: 'Edit - PugnatorisClub'
 },
 ];
 

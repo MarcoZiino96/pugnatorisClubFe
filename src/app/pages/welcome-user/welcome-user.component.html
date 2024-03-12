@@ -1,17 +1,8 @@
-<div>
-  <a routerLink="/welcomeUser/:id/edit">modifica</a>
-</div>
-<div class="card">
-  <div *ngIf="iUser" class="card-body">
-    <!-- <img src={{iUser.response.fotoProfilo}} alt="fotoProfilo"> -->
-   <h5 class="card-title">{{iUser.response.nome}}</h5>
-    <h6 class="card-subtitle mb-2 text-body-secondary">{{iUser.response.cognome}}</h6>
-    <p class="card-text">{{iUser.response.dataNascita}}</p>
-    <a  class="card-link">{{iUser.response.email}}</a>
-    <a  class="card-link">{{iUser.response.username}}</a>
-  </div>
-</div>
-<div *ngIf="!iUser">dati utente non disbonibili</div>
+
+
+<a *ngIf="iUser" [routerLink]="['/welcomeUser/edit/',iUser.id]">modifica</a>
+<p>welcomeeeeeee</p>
+<div *ngIf="!iUser"></div>
 
 <!-- <div class="card">
   <div class="card-body">

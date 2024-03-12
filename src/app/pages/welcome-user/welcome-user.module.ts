@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { WelcomeUserRoutingModule } from './welcome-user-routing.module';
 import { WelcomeUserComponent } from './welcome-user.component';
 import { EditComponent } from './edit/edit.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { EditComponent } from './edit/edit.component';
   ],
   imports: [
     CommonModule,
-    WelcomeUserRoutingModule
+    WelcomeUserRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class WelcomeUserModule {

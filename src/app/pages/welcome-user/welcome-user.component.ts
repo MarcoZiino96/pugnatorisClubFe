@@ -1,8 +1,8 @@
 
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { AuthService } from '../../Services/auth.service';
-import { IResponseData } from '../../Models/i-response-data';
+import { IAuthData } from '../../Models/i-auth-data';
+import { IUser } from '../../Models/i-user';
+
 
 
 
@@ -13,44 +13,20 @@ import { IResponseData } from '../../Models/i-response-data';
 })
 export class WelcomeUserComponent {
 
- iUser!:IResponseData;
-//   iUser!:IUser;
 
-
-  constructor(private route : ActivatedRoute, private authSvc:AuthService){}
+  iUser!:IUser;
 
   ngOnInit(){
-    this.route.params.subscribe((params:any)=>{
-      this.authSvc.getById(params.id)?.subscribe((res=>{
-        if(res == undefined){
-           this.iUser = {
-            dateResponse: new Date(),
-            message: "",
-            response: {
-              id: 0,
-              username: "",
-              password: "",
-              ruolo: "",
-              nome: "",
-              cognome: "",
-              email: "",
-              fotoProfilo: "",
-              dataNascita: false,
-            }
-          }
-        }
-        console.log(res);
+   let stringUser:string|null = localStorage.getItem("accessData");
+    if(!stringUser) return;
 
-        this.iUser = res;
-      }))
-    })
-  //   let stringUser:string|null = localStorage.getItem("accessData");
-  //   if(!stringUser) return;
-
-  //   let user:IAuthData = JSON.parse(stringUser)
-  //   this.iUser = user.user
-  // }
-
+    let user:IAuthData = JSON.parse(stringUser)
+     this.iUser = user.user
+ }
 }
-}
+
+
+
+
+
 
