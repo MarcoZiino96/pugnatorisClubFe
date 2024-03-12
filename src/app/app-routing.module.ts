@@ -7,7 +7,7 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./pages/homepage/homepage.module').then(m => m.HomepageModule)
   },
- {
+{
     path: 'auth',
   loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
 },
@@ -16,7 +16,8 @@ const routes: Routes = [
   loadChildren: () => import('./pages/homepage/homepage.module').then(m => m.HomepageModule)
 },
 {
-  path: 'welcomeUser/:id', loadChildren: () => import('./pages/welcome-user/welcome-user.module').then(m => m.WelcomeUserModule),
+  path: 'welcomeUser/:id',
+  loadChildren: () => import('./pages/welcome-user/welcome-user.module').then(m => m.WelcomeUserModule),
   canActivate: [WelcomeGuard],
   canActivateChild: [WelcomeGuard]
 },

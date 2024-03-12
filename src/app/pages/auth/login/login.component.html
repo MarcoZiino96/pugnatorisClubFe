@@ -2,6 +2,8 @@
 
   <span *ngIf="userError">
   <p class=" text-center text-danger">username/password errate</p></span>
+  <span *ngIf="genericError">
+    <p class=" text-center text-danger">username/password errate</p></span>
   <form [formGroup]="loginForm" (ngSubmit)="logIn()">
     <div class="form-floating">
       <input id="username" type="text" class="form-control" formControlName="username">

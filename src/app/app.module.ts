@@ -6,7 +6,12 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { DefaultInterceptor } from './Interceptors/default.interceptor';
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -20,7 +25,14 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: DefaultInterceptor,
+      multi: true,
+    }
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

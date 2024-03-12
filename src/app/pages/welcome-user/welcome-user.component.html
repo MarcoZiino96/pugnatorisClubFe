@@ -1,10 +1,25 @@
-
+<div>
+  <a routerLink="/welcomeUser/:id/edit">modifica</a>
+</div>
 <div class="card">
-  <div class="card-body">
-    <h5 class="card-title">{{iUser.nome}}</h5>
-    <h6 class="card-subtitle mb-2 text-body-secondary">{{iUser.cognome}}</h6>
-    <p class="card-text">{{iUser.email}}</p>
-    <a href="#" class="card-link">{{iUser.email}}</a>
-    <a href="#" class="card-link">{{iUser.username}}</a>
+  <div *ngIf="iUser" class="card-body">
+    <!-- <img src={{iUser.response.fotoProfilo}} alt="fotoProfilo"> -->
+   <h5 class="card-title">{{iUser.response.nome}}</h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary">{{iUser.response.cognome}}</h6>
+    <p class="card-text">{{iUser.response.dataNascita}}</p>
+    <a  class="card-link">{{iUser.response.email}}</a>
+    <a  class="card-link">{{iUser.response.username}}</a>
   </div>
 </div>
+<div *ngIf="!iUser">dati utente non disbonibili</div>
+
+<!-- <div class="card">
+  <div class="card-body">
+    <img src={{iUser.fotoProfilo}} alt="fotoProfilo">
+    <h5 class="card-title">{{iUser.nome}}</h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary">{{iUser.cognome}}</h6>
+    <p class="card-text">{{iUser.dataNascita}}</p>
+    <a  class="card-link">{{iUser.email}}</a>
+    <a  class="card-link">{{iUser.username}}</a>
+  </div>
+</div> -->

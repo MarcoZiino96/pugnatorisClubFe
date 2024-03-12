@@ -1,16 +1,22 @@
-import { HttpInterceptorFn } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { IAuthData } from '../Models/i-auth-data';
 
-export const defaultInterceptor: HttpInterceptorFn = (req, next) => {
-  let stringUser:string|null =localStorage.getItem('user');
-  if(!stringUser) return next(req);
+@Injectable()
+export class DefaultInterceptor implements HttpInterceptor{
+  intercept(req:HttpRequest<any>, next:HttpHandler):
+  Observable<HttpEvent<any>>{
 
-  let user:IAuthData = JSON.parse(stringUser)
-  let newReq = req.clone({
-    setHeaders:{
+    let stringUser:string|null = localStorage.getItem("accessData");
+    if(!stringUser) return next.handle(req)
 
-      Authorization: user.accessToken
-    }
-  })
-  return next(newReq)
-};
+    let user:IAuthData = JSON.parse(stringUser)
+    let newReq = req.clone({
+      setHeaders:{
+        Authorization: "Bearer " +user.accessToken
+      }
+    })
+    return next.handle(newReq);
+  }
+}

@@ -5,7 +5,7 @@ import { RegisterComponent } from './register/register.component';
 
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent, title: 'Login - PugnatorisClub' },
+  { path: 'login', component: LoginComponent, title: 'Login - PugnatorisClub'},
   { path: 'register', component: RegisterComponent, title: 'Register - PugnatorisClub' }
 ];
 

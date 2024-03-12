@@ -1,4 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+import { IUser } from './../Models/i-user';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IAuthData } from '../Models/i-auth-data';
 import { IRegister } from '../Models/i-register';
@@ -7,7 +8,7 @@ import { environment } from '../../environments/environment.development';
 import { ILogin } from '../Models/i-login';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
-import { IUser } from '../Models/i-user';
+import { IResponseData } from '../Models/i-response-data';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,8 @@ export class AuthService {
   constructor(private http:HttpClient, private router:Router) {
     this.restoreUser();
    }
+
+
 
   signUp(register:IRegister):Observable<IAuthData>{
     return this.http.post<IAuthData>(`${this.backendUrl}/auth/register`, register)
@@ -66,7 +69,7 @@ export class AuthService {
     this.authSubject.next(accessData)
   }
 
-  getById(id:number){
-    return this.http.get<IUser>(`${environment.backEndUrl}/utente/${id}`)
+  getById(id:number):Observable<IResponseData> | undefined{
+    return this.http.get<IResponseData>(`${environment.backEndUrl}/utente/${id}`)
   }
 }

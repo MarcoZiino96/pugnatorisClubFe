@@ -15,7 +15,7 @@ export class LoginComponent {
   msg!:ILogin;
   errorMsg!:ILogin;
   userError:boolean=false;
-  passError:boolean=false;
+  genericError:boolean=false;
 
 
   constructor(private fb:FormBuilder, private authSvc:AuthService, private router: Router){}
@@ -96,8 +96,6 @@ export class LoginComponent {
       throw error;
     })
     ).subscribe(data =>{
-      console.log(data);
-
       if(data.user.ruolo === 'USER'){
         this.authSvc.isLoggedIn$.subscribe(res=>{})
         this.router.navigate(['../../welcomeUser/'+data.user.id]);
