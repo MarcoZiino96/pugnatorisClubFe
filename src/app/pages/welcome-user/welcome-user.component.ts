@@ -19,7 +19,6 @@ export class WelcomeUserComponent {
   ngOnInit(){
    let stringUser:string|null = localStorage.getItem("accessData");
     if(!stringUser) return;
-
     let user:IAuthData = JSON.parse(stringUser)
      this.iUser = user.user
  }

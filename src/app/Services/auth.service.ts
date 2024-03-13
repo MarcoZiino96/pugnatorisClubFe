@@ -69,11 +69,21 @@ export class AuthService {
     this.authSubject.next(accessData)
   }
 
-  getById(id:number):Observable<IResponseData> | undefined{
+  getById(id:number):Observable<IResponseData>{
     return this.http.get<IResponseData>(`${environment.backEndUrl}/utente/${id}`)
   }
 
   edit(id:number,bodyRequest:IRegister):Observable<IResponseData> | undefined{
     return this.http.put<IResponseData>(`${environment.backEndUrl}/utente/edit/${id}`, bodyRequest)
+  }
+
+  uploadFile(id:number,file: File) {
+
+    const formData = new FormData();
+
+    formData.append('upload', file);
+
+
+    return this.http.patch(`${environment.backEndUrl}/utente/upload/${id}`, formData);
   }
 }
