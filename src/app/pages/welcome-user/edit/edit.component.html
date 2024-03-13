@@ -54,11 +54,22 @@
 
 <div *ngIf="!iUser">dati utente non disbonibili</div>
 
-<!-- <div class="form-floating">
+<form [formGroup]="editPasswordForm">
+  <div class="form-floating">
+    <input id='password' type="password" class="form-control" formControlName="oldPassword">
+    <label >Old Password</label>
+    <span
+    *ngIf="editPasswordForm.controls['oldPassword'].dirty"
+    [ngClass]="{ 'valid': isValid('oldPassword'), 'invalid': isInvalid('oldPassword')}">
+    {{msg.oldPassword}}
+  </span>
+  </div>
+
+<div class="form-floating">
   <input id='password' type="password" class="form-control" formControlName="password">
-  <label >Password</label>
+  <label >New Password</label>
   <span
-  *ngIf="registerForm.controls['password'].dirty"
+  *ngIf="editPasswordForm.controls['password'].dirty"
   [ngClass]="{ 'valid': isValid('password'), 'invalid': isInvalid('password') }">
   {{msg.password}}
 </span>
@@ -67,8 +78,10 @@
   <input id='confirmPassword' type="password" class="form-control" formControlName="confirmPassword">
   <label >Conferma password</label>
   <span
-  *ngIf="registerForm.controls['confirmPassword'].dirty"
+  *ngIf="editPasswordForm.controls['confirmPassword'].dirty"
   [ngClass]="{ 'valid':match, 'invalid':!match}">
   {{msg.confirmPassword}}
 </span>
-</div> -->
+</div>
+<button (click)="editPassword()" class="btn btn-success">Modifica Password</button>
+</form>

@@ -3,4 +3,7 @@ export interface IEdit {
   cognome: string;
   dataNascita: string;
   email : string;
+  oldPassword:string;
+  password : string;
+  confirmPassword : string;
 }
