@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../Services/auth.service';
 import { ILogin } from '../../../Models/i-login';
@@ -15,10 +15,9 @@ export class LoginComponent {
   msg!:ILogin;
   errorMsg!:ILogin;
   userError:boolean=false;
-  genericError:boolean=false;
 
 
-  constructor(private fb:FormBuilder, private authSvc:AuthService, private router: Router){}
+  constructor(private fb:FormBuilder, private authSvc:AuthService, private router: Router,@Inject('Swal') private swal: any){}
 
   loginForm:FormGroup = this.fb.group({
 
@@ -90,8 +89,17 @@ export class LoginComponent {
     this.authSvc.logIn(this.loginForm.value)
     .pipe(catchError(error=>{
       if(error.error.message === "username/password errate" || error.error.message === "Utente non trovato"){
-        this.userError = true;
-        this.loginForm.reset();
+        this.swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Username o Password errate!"
+        });
+      }else{
+        this.swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Problemi di comunicazione con il server, controlla la tua conessione!"
+        });
       }
       throw error;
     })

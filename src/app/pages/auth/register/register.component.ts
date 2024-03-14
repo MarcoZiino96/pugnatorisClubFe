@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { IRegister } from '../../../Models/i-register';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../Services/auth.service';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -16,8 +17,9 @@ export class RegisterComponent {
   errorMsg!:IRegister;
   registered : boolean=false;
 
-
-  constructor(private fb:FormBuilder, private authSvc:AuthService){}
+  constructor(private fb:FormBuilder, private authSvc:AuthService,
+    @Inject('Swal') private swal: any){
+  }
 
 
   registerForm:FormGroup = this.fb.group({
@@ -162,7 +164,25 @@ export class RegisterComponent {
     const registerData: any = this.registerForm.value
     registerData.dataNascita = new Date(registerData.dataNascita)
     delete registerData.confirmPassword
-    this.authSvc.signUp(registerData).subscribe(res =>{
+    this.authSvc.signUp(registerData)
+    .pipe(catchError(error=>{
+      if(error.error.message){
+        this.swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Username già esistente,cambialo!",
+        });
+      }else{
+        this.swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Problemi di comunicazione con il server, controlla la tua conessione!"
+        });
+      }
+      throw error;
+    })
+    )
+    .subscribe(res =>{
     this.registered = true
     });
 }

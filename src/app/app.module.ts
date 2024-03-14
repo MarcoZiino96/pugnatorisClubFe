@@ -8,6 +8,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { DefaultInterceptor } from './Interceptors/default.interceptor';
+import Swal from 'sweetalert2';
 
 
 
@@ -30,7 +31,8 @@ import { DefaultInterceptor } from './Interceptors/default.interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: DefaultInterceptor,
       multi: true,
-    }
+    },
+    { provide: 'Swal', useValue: Swal }
 
   ],
   bootstrap: [AppComponent]

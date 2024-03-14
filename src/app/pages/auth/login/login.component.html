@@ -1,10 +1,12 @@
 <div class="container">
 
+
   <span *ngIf="userError">
-  <p class=" text-center text-danger">username/password errate</p></span>
-  <span *ngIf="genericError">
-    <p class=" text-center text-danger">username/password errate</p></span>
+    <p class=" text-center text-danger">username/password errate</p>
+  </span>
+
   <form [formGroup]="loginForm" (ngSubmit)="logIn()">
+
     <div class="form-floating">
       <input id="username" type="text" class="form-control" formControlName="username">
       <label>Username </label>
@@ -25,7 +27,7 @@
         {{msg.password}}
       </span>
     </div>
-    <button [disabled]="loginForm.invalid" class="btn btn-primary w-100 py-2"type="submit">Sign in</button>
-  </form>
 
+    <button [disabled]="loginForm.invalid" class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+  </form>
 </div>

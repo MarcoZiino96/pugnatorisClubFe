@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IResponseData } from '../../../Models/i-response-data';
 import { AuthService } from '../../../Services/auth.service';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IEdit } from '../../../Models/i-edit';
-import { throwError } from 'rxjs';
+import { catchError } from 'rxjs';
+import { IPassword } from '../../../Models/i-password';
 
 
 @Component({
@@ -18,8 +19,12 @@ export class EditComponent {
   match: boolean = false;
   msg!: IEdit;
   errorMsg!: IEdit;
+  msgPassword!:IPassword
+  errorMsgPassword!:IPassword
   registered: boolean = false;
-  file!:File
+  file!: File
+  showPass: boolean = false;
+  showEdit: boolean = true;
 
   iUser: IResponseData = {
     dateResponse: new Date(),
@@ -36,7 +41,11 @@ export class EditComponent {
     },
   }
 
-  constructor(private route: ActivatedRoute, private authSvc: AuthService, private fb: FormBuilder, private router: Router) { }
+  constructor(private route: ActivatedRoute,
+    private authSvc: AuthService,
+    private fb: FormBuilder,
+    private router: Router,
+    @Inject('Swal') private swal: any) { }
 
   editForm: FormGroup = this.fb.group({
     nome: this.fb.control(null, [Validators.required, Validators.minLength(3), Validators.maxLength(10), Validators.pattern(/^[a-zA-Z\s]*$/)]),
@@ -45,14 +54,14 @@ export class EditComponent {
     dataNascita: this.fb.control(null, [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)]),
   });
 
-  editFotoForm :FormGroup = this.fb.group({
+  editFotoForm: FormGroup = this.fb.group({
     fotoProfilo: this.fb.control(this.iUser.response.dataNascita, [Validators.required])
   })
 
-  editPasswordForm:FormGroup=this.fb.group({
-   oldPassword: this.fb.control(null,[Validators.required, Validators.minLength(8), Validators.maxLength(16), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>])(?=.*[^\s]).{8,}$/)]),
-   password: this.fb.control(null,[Validators.required, Validators.minLength(8), Validators.maxLength(16), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>])(?=.*[^\s]).{8,}$/)]),
-   confirmPassword: this.fb.control(null, [Validators.required])
+  editPasswordForm: FormGroup = this.fb.group({
+    oldPassword: this.fb.control(null, [Validators.required, Validators.minLength(8), Validators.maxLength(16), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>])(?=.*[^\s]).{8,}$/)]),
+    newPassword: this.fb.control(null, [Validators.required, Validators.minLength(8), Validators.maxLength(16), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>])(?=.*[^\s]).{8,}$/)]),
+    confirmPassword: this.fb.control(null, [Validators.required])
   })
 
 
@@ -80,24 +89,30 @@ export class EditComponent {
       cognome: this.invalidMessages('cognome'),
       email: this.invalidMessages('email'),
       dataNascita: this.invalidMessages("dataNascita"),
+    }
+
+    this.errorMsgPassword = {
       oldPassword: this.invalidMessagesPass("oldPassword"),
-      password: this.invalidMessagesPass("password"),
-      confirmPassword: (this.editPasswordForm.controls['confirmPassword'].value !== this.editPasswordForm.controls['password'].value) && (this.editPasswordForm.controls['confirmPassword'].dirty) ? 'Mancata corrispondenza' : this.invalidMessages('confirmPassword')
+      newPassword: this.invalidMessagesPass("newPassword"),
+      confirmPassword: (this.editPasswordForm.controls['confirmPassword'].value !== this.editPasswordForm.controls['newPassword'].value) && (this.editPasswordForm.controls['confirmPassword'].dirty) ? 'Mancata corrispondenza' : this.invalidMessages('confirmPassword')
     }
 
     this.msg = {
       email: '',
       nome: '',
       cognome: '',
-      dataNascita: '',
-      oldPassword:'',
-      password: '',
+      dataNascita: ''
+    }
+
+    this.msgPassword={
+      oldPassword: '',
+      newPassword: '',
       confirmPassword: ''
     }
 
-    if(this.editPasswordForm.controls["password"].value === this.editPasswordForm.controls["confirmPassword"].value && this.editPasswordForm.controls["confirmPassword"].dirty){
+    if (this.editPasswordForm.controls["newPassword"].value === this.editPasswordForm.controls["confirmPassword"].value && this.editPasswordForm.controls["confirmPassword"].dirty) {
       this.match = true
-    }else{
+    } else {
       this.match = false
     }
 
@@ -125,22 +140,22 @@ export class EditComponent {
       this.msg.dataNascita = 'Campo compilato correttamente'
     }
 
-    if (this.errorMsg.oldPassword) {
-      this.msg.oldPassword = this.errorMsg.oldPassword
+    if (this.errorMsgPassword.oldPassword) {
+      this.msgPassword.oldPassword = this.errorMsgPassword.oldPassword
     } else {
-      this.msg.oldPassword = 'Campo compilato correttamente'
+      this.msgPassword.oldPassword = 'Campo compilato correttamente'
     }
 
-    if (this.errorMsg.password) {
-      this.msg.password = this.errorMsg.password
+    if (this.errorMsgPassword.newPassword) {
+      this.msgPassword.newPassword = this.errorMsgPassword.newPassword
     } else {
-      this.msg.password = 'Campo compilato correttamente'
+      this.msgPassword.newPassword = 'Campo compilato correttamente'
     }
 
-    if (this.errorMsg.confirmPassword) {
-      this.msg.confirmPassword = this.errorMsg.confirmPassword
+    if (this.errorMsgPassword.confirmPassword) {
+      this.msgPassword.confirmPassword = this.errorMsgPassword.confirmPassword
     } else {
-      this.msg.confirmPassword = 'Le due password combaciano'
+      this.msgPassword.confirmPassword = 'Le due password combaciano'
     }
   }
 
@@ -174,27 +189,27 @@ export class EditComponent {
 
   invalidMessagesPass(fieldName: string): string {
     const field: AbstractControl | null = this.editPasswordForm.get(fieldName);
-    let errorMsg: string = "";
+    let errorMsgPassword: string = "";
 
     if (field)
       if (field.errors) {
 
         if (field.errors['required'])
-          errorMsg = 'Campo vuoto'
+          errorMsgPassword = 'Campo vuoto'
 
-        if (field.errors['pattern'] && (fieldName === 'password' || fieldName === 'oldPassword'))
-        errorMsg = "Password deve contenere: 1 lettera maiuscola, 1 lettera minuscola, 1 numero e 1 carattere speciale"
+        if (field.errors['pattern'] && (fieldName === 'newPassword' || fieldName === 'oldPassword'))
+          errorMsgPassword = "Password deve contenere: 1 lettera maiuscola, 1 lettera minuscola, 1 numero e 1 carattere speciale"
 
-        if (field.errors['minlength'] && fieldName === 'password' || fieldName === 'oldPassword')
-        errorMsg = 'Lunghezza minima password: 8 caratteri'
+        if (field.errors['minlength'] && (fieldName === 'newPassword' || fieldName === 'oldPassword'))
+          errorMsgPassword = 'Lunghezza minima password: 8 caratteri'
 
-        if (field.errors['maxlength'] && fieldName === 'password' || fieldName === 'oldPassword')
-          errorMsg = 'Lunghezza massima password: 16 caratteri'
+        if (field.errors['maxlength'] && (fieldName === 'newPassword' || fieldName === 'oldPassword'))
+          errorMsgPassword = 'Lunghezza massima password: 16 caratteri'
 
         if (field.errors['minlength'] && fieldName === 'confirmPassword')
-        errorMsg = 'Lunghezza minima password: 8 caratteri'
+          errorMsgPassword = 'Lunghezza minima password: 8 caratteri'
       }
-    return errorMsg;
+    return errorMsgPassword;
   }
 
   isValid(inputName: string) {
@@ -205,6 +220,18 @@ export class EditComponent {
     return !this.editForm.get(inputName)?.valid && this.editForm.get(inputName)?.dirty
   }
 
+  isValidFormPass(inputName: string) {
+    return this.editPasswordForm.get(inputName)?.valid && this.editPasswordForm.get(inputName)?.dirty
+  }
+
+  isInvalidFormPass(inputName: string) {
+    return !this.editPasswordForm.get(inputName)?.valid && this.editPasswordForm.get(inputName)?.dirty
+  }
+
+  onFileSelected(event: any) {
+    this.file = event.target.files[0];
+  }
+
   edit() {
 
     const editData: any = this.editForm.value
@@ -212,16 +239,34 @@ export class EditComponent {
     editData.dataNascita = new Date(editData.dataNascita)
 
     this.route.params.subscribe((params: any) => {
-      this.authSvc.getById(params.id)?.subscribe((res => {
-        if (!res) {
-          throw new Error
-        }
+      this.authSvc.getById(params.id).subscribe((res => {
+
         this.iUser = res
 
-        this.authSvc.edit(this.iUser.response.id, editData)?.subscribe((response => {
-          if (!response) {
-            throw new Error
-          } else {
+        this.authSvc.edit(this.iUser.response.id, editData)
+        ?.pipe(catchError(error => {
+          if (error.error.message) {
+            this.swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Problemi di comunicazione con il server, controlla la tua conessione"
+            });
+          }
+          throw error;
+        }))
+        .subscribe((response => {
+          if (!response){
+            this.swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Qualcosa è andato storto, la foto non è stata caricata!"
+            })
+          } else{
+            this.swal.fire({
+              title: "Good job!",
+              text: "Modifiche apportate con  successo!",
+              icon: "success"
+            })
             this.router.navigate(['../../welcomeUser']);
           }
         }))
@@ -229,64 +274,107 @@ export class EditComponent {
     })
   }
 
-  onFileSelected(event: any) {
-    this.file = event.target.files[0];
+  editFoto() {
+
+    this.route.params.subscribe((params: any) => {
+      this.authSvc.getById(params.id).subscribe(
+        (res) => {
+          this.iUser = res;
+
+          this.authSvc.uploadFile(this.iUser.response.id, this.file)
+            .pipe(catchError(error => {
+              if (error.error.message) {
+                this.swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "Scegli un file prima di caricarlo!!"
+                });
+              } else {
+                this.swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "Problemi di comunicazione con il server, controlla la tua conessione!"
+                });
+              }
+              throw error;
+            }))
+            .subscribe((res) => {
+              if (res) {
+                this.swal.fire({
+                  title: "Good job!",
+                  text: "La tua foto è stata caricata con successo!",
+                  icon: "success"
+                })
+              } else if (!res) {
+                this.swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "Qualcosa è andato storto, la foto non è stata caricata!"
+                })
+              }
+            }
+            )
+        })
+    })
   }
 
-editFoto(){
+  editPassword() {
+    const passwordFormData: any = this.editPasswordForm.value;
+    delete passwordFormData.confirmPassword
 
-  this.route.params.subscribe((params: any) => {
-    this.authSvc.getById(params.id)?.subscribe(
-      (res) => {
-        if (!res) {
-          throwError('Utente non trovato');
-        }
+    this.route.params.subscribe((params: any) => {
+      this.authSvc.getById(params.id).subscribe(
+        (res) => {
 
-        this.iUser = res;
+          this.iUser = res;
 
-        this.authSvc.uploadFile(this.iUser.response.id, this.file)?.subscribe(
-          (response) => {
-            console.log("Foto caricata con successo", response);
-          },
-          (error) => {
-            console.error("Errore durante l'upload della foto", error);
+          this.authSvc.changePassword(this.iUser.response.id, passwordFormData)
+          .pipe(catchError(error => {
+            if (error.error.message === 'Password sbagliata') {
+              this.swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "La tua vecchia password è errata"
+              });
+              this.editPasswordForm.reset();
+            } else if(error.error.message === 'Password vecchia uguale a quella nuova' ){
+              this.swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "La vecchia password è uguale alla nuova password"
+              });
+              this.editPasswordForm.reset();
+            }
+            else {
+              this.swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Problemi di comunicazione con il server, controlla la tua conessione!"
+              });
+            }
+            throw error;
+          }))
+          .subscribe((res)=>{
+            if(res){
+              this.swal.fire({
+                title: "Good job!",
+                text: "Password cambiata con successo!",
+                icon: "success"
+              })
+              this.router.navigate(['/welcomeUser'])
+
+            }else{
+              this.swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Qualcosa è andato storto"
+              })
+              this.router.navigate(['/welcomeUser'])
+            }
           }
-        );
-      },
-    );
-  });
-
+          )
+        }
+      )
+    })
   }
-
-editPassword(){
-  const passwordFormData:any = this.editPasswordForm.value;
-  delete passwordFormData.confirmPassword
-
-  this.route.params.subscribe((params: any) => {
-    this.authSvc.getById(params.id)?.subscribe(
-      (res) => {
-        if (!res) {
-          throwError('Utente non trovato');
-        }
-
-        this.iUser = res;
-        console.log(this.iUser);
-        console.log(passwordFormData);
-
-
-
-        this.authSvc.changePassword(this.iUser.response.id, passwordFormData)?.subscribe(
-          (response) => {
-            console.log(response);
-
-            console.log("Password cambiata con successo", response);
-          },
-          (error) => {
-            console.error("Errore durante il cambio della password", error);
-          }
-        );
-      },
-    );
-  });
-}
 }
