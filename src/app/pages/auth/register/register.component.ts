@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { IRegister } from '../../../Models/i-register';
+import { IRegister } from '../../../Models/interfaceUtente/i-register';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../Services/auth.service';
 import { catchError } from 'rxjs';

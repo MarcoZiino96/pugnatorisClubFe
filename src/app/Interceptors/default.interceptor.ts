@@ -1,7 +1,7 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IAuthData } from '../Models/i-auth-data';
+import { IAuthData } from '../Models/interfaceUtente/i-auth-data';
 
 @Injectable()
 export class DefaultInterceptor implements HttpInterceptor{

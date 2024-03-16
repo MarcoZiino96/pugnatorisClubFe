@@ -1,7 +1,10 @@
 
 import { Component } from '@angular/core';
-import { IAuthData } from '../../Models/i-auth-data';
-import { IUser } from '../../Models/i-user';
+import { IAuthData } from '../../Models/interfaceUtente/i-auth-data';
+import { IUser } from '../../Models/interfaceUtente/i-user';
+import { CorsoService } from '../../Services/corso.service';
+import { ICorso } from '../../Models/interfaceCorso/i-corso';
+import { IResponseCorso } from '../../Models/interfaceCorso/i-response-corso';
 
 
 
@@ -13,14 +16,28 @@ import { IUser } from '../../Models/i-user';
 })
 export class WelcomeUserComponent {
 
-
   iUser!:IUser;
+  iCorsi!:ICorso[]
+
+  constructor(private corsoSvc:CorsoService){}
 
   ngOnInit(){
    let stringUser:string|null = localStorage.getItem("accessData");
     if(!stringUser) return;
     let user:IAuthData = JSON.parse(stringUser)
      this.iUser = user.user
+
+     this.getAllCorsi();
+ }
+
+ getAllCorsi(){
+  this.corsoSvc.getAll().subscribe(data =>{
+   return  this.iCorsi = data.response
+  })
+ }
+
+ getImgByCategories(categoria:string){
+  return this.corsoSvc.getImgByCategories(categoria)
  }
 }
 

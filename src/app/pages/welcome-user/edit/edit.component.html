@@ -9,7 +9,7 @@
           (change)="onFileSelected($event)">
         <label for="fileInput">Seleziona un file:</label>
         <span>
-          <img class="rounded-circle" [srcset]="iUser.response.fotoProfilo" alt="fotoProfilo">
+          <img class="rounded-circle" [src]="iUser.response.fotoProfilo" alt="fotoProfilo">
         </span>
         <button (click)="editFoto()" class="btn btn-warning">carica</button>
       </div>

@@ -1,15 +1,15 @@
 
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { IAuthData } from '../Models/i-auth-data';
-import { IRegister } from '../Models/i-register';
+import { IAuthData } from '../Models/interfaceUtente/i-auth-data';
+import { IRegister } from '../Models/interfaceUtente/i-register';
 import { BehaviorSubject, Observable, catchError, map, tap } from 'rxjs';
 import { environment } from '../../environments/environment.development';
-import { ILogin } from '../Models/i-login';
+import { ILogin } from '../Models/interfaceUtente/i-login';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
-import { IResponseData } from '../Models/i-response-data';
-import { ChangePassword } from '../Models/change-password';
+import { IResponseData } from '../Models/interfaceUtente/i-response-data';
+import { ChangePassword } from '../Models/interfaceUtente/change-password';
 
 
 @Injectable({

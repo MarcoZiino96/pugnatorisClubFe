@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../Services/auth.service';
-import { ILogin } from '../../../Models/i-login';
+import { ILogin } from '../../../Models/interfaceUtente/i-login';
 import { catchError } from 'rxjs';
 import { Router } from '@angular/router';
 

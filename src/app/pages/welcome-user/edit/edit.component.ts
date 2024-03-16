@@ -1,11 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IResponseData } from '../../../Models/i-response-data';
+import { IResponseData } from '../../../Models/interfaceUtente/i-response-data';
 import { AuthService } from '../../../Services/auth.service';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IEdit } from '../../../Models/i-edit';
+import { IEdit } from '../../../Models/interfaceUtente/i-edit';
 import { catchError } from 'rxjs';
-import { IPassword } from '../../../Models/i-password';
+import { IPassword } from '../../../Models/interfaceUtente/i-password';
 
 
 @Component({
