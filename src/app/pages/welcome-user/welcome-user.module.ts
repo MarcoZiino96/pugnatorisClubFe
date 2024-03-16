@@ -4,12 +4,14 @@ import { WelcomeUserRoutingModule } from './welcome-user-routing.module';
 import { WelcomeUserComponent } from './welcome-user.component';
 import { EditComponent } from './edit/edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PrenotazioneComponent } from './prenotazione/prenotazione.component';
 
 
 @NgModule({
   declarations: [
     WelcomeUserComponent,
-    EditComponent
+    EditComponent,
+    PrenotazioneComponent
   ],
   imports: [
     CommonModule,

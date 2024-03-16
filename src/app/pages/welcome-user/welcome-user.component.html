@@ -1,15 +1,19 @@
-<a *ngIf="iUser" [routerLink]="['/welcomeUser/edit/',iUser.id]">modifica</a>
+<a  [routerLink]="['/welcomeUser/edit/',iUser.id]">modifica</a>
+
 
 <div class="container">
 
-
-  <div class="card" *ngFor="let c of iCorsi">
-    <img [src]="getImgByCategories(c.categoria)" class="card-img-top" alt="fotoCategoria">
+  <div class="row">
+    <div class="card col-12 col-md-6 col-xl-4 mb-2" *ngFor="let c of iCorsi">
+      <div>
+        <img [src]="getImgByCategories(c.categoria)" class="card-img-top imgCard" alt="fotoCategoria">
+      </div>
       <div class="card-body">
         <h5 class="card-title">{{c.categoria}}</h5>
         <p class="card-text">{{c.descrizione}}</p>
-        <p class="card-text">Durata: {{c.durata}}</p>
+          <p class="card-text">Durata:{{c.durata}}</p>
+          <a [routerLink]="['/welcomeUser/prenotazione',iUser.id,  c.id]" class="btn btn-success"> prenota</a>
       </div>
     </div>
   </div>
-
+</div>

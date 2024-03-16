@@ -4,7 +4,7 @@ import { IAuthData } from '../../Models/interfaceUtente/i-auth-data';
 import { IUser } from '../../Models/interfaceUtente/i-user';
 import { CorsoService } from '../../Services/corso.service';
 import { ICorso } from '../../Models/interfaceCorso/i-corso';
-import { IResponseCorso } from '../../Models/interfaceCorso/i-response-corso';
+
 
 
 
@@ -17,7 +17,7 @@ import { IResponseCorso } from '../../Models/interfaceCorso/i-response-corso';
 export class WelcomeUserComponent {
 
   iUser!:IUser;
-  iCorsi!:ICorso[]
+  iCorsi!:ICorso[];
 
   constructor(private corsoSvc:CorsoService){}
 
