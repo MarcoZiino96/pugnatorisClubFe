@@ -67,9 +67,13 @@ export class EditComponent {
 
   ngOnInit() {
     this.route.params.subscribe((params: any) => {
-      this.authSvc.getById(params.id)?.subscribe((res => {
+      this.authSvc.getById(params.id).subscribe((res => {
         if (!res) {
-          throw new Error
+          this.swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Nessun utente trovato"
+          });
         }
         this.iUser = res
 

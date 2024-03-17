@@ -12,7 +12,7 @@ const routes: Routes = [
   path: 'edit/:id', component: EditComponent, title: 'Edit - PugnatorisClub'
 },
 {
-  path: 'prenotazione/:id/:id', component: PrenotazioneComponent, title: 'Prenotazione - PugnatorisClub'
+  path: 'prenotazione/:idUtente/:idCorso', component: PrenotazioneComponent, title: 'Prenotazione - PugnatorisClub'
 }
 ];
 
