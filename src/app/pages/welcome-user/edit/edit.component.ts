@@ -19,8 +19,8 @@ export class EditComponent {
   match: boolean = false;
   msg!: IEdit;
   errorMsg!: IEdit;
-  msgPassword!:IPassword
-  errorMsgPassword!:IPassword
+  msgPassword!: IPassword
+  errorMsgPassword!: IPassword
   registered: boolean = false;
   file!: File
   showPass: boolean = false;
@@ -108,7 +108,7 @@ export class EditComponent {
       dataNascita: ''
     }
 
-    this.msgPassword={
+    this.msgPassword = {
       oldPassword: '',
       newPassword: '',
       confirmPassword: ''
@@ -248,32 +248,32 @@ export class EditComponent {
         this.iUser = res
 
         this.authSvc.edit(this.iUser.response.id, editData)
-        ?.pipe(catchError(error => {
-          if (error.error.message) {
-            this.swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "Problemi di comunicazione con il server, controlla la tua conessione"
-            });
-          }
-          throw error;
-        }))
-        .subscribe((response => {
-          if (!response){
-            this.swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: "Qualcosa è andato storto, la foto non è stata caricata!"
-            })
-          } else{
-            this.swal.fire({
-              title: "Good job!",
-              text: "Modifiche apportate con  successo!",
-              icon: "success"
-            })
-            this.router.navigate(['../../welcomeUser']);
-          }
-        }))
+          ?.pipe(catchError(error => {
+            if (error.error.message) {
+              this.swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Problemi di comunicazione con il server, controlla la tua conessione"
+              });
+            }
+            throw error;
+          }))
+          .subscribe((response => {
+            if (!response) {
+              this.swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Qualcosa è andato storto, la foto non è stata caricata!"
+              })
+            } else {
+              this.swal.fire({
+                title: "Good job!",
+                text: "Modifiche apportate con  successo!",
+                icon: "success"
+              })
+              this.router.navigate(['../../welcomeUser']);
+            }
+          }))
       }))
     })
   }
@@ -333,50 +333,49 @@ export class EditComponent {
           this.iUser = res;
 
           this.authSvc.changePassword(this.iUser.response.id, passwordFormData)
-          .pipe(catchError(error => {
-            if (error.error.message === 'Password sbagliata') {
-              this.swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "La tua vecchia password è errata"
-              });
-              this.editPasswordForm.reset();
-            } else if(error.error.message === 'Password vecchia uguale a quella nuova' ){
-              this.swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "La vecchia password è uguale alla nuova password"
-              });
-              this.editPasswordForm.reset();
-            }
-            else {
-              this.swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Problemi di comunicazione con il server, controlla la tua conessione!"
-              });
-            }
-            throw error;
-          }))
-          .subscribe((res)=>{
-            if(res){
-              this.swal.fire({
-                title: "Good job!",
-                text: "Password cambiata con successo!",
-                icon: "success"
-              })
-              this.router.navigate(['/welcomeUser'])
+            .pipe(catchError(error => {
+              if (error.error.message === 'Password sbagliata') {
+                this.swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "La tua vecchia password è errata"
+                });
+                this.editPasswordForm.reset();
+              } else if (error.error.message === 'Password vecchia uguale a quella nuova') {
+                this.swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "La vecchia password è uguale alla nuova password"
+                });
+                this.editPasswordForm.reset();
+              }
+              else {
+                this.swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "Problemi di comunicazione con il server, controlla la tua conessione!"
+                });
+              }
+              throw error;
+            }))
+            .subscribe((res) => {
+              if (res) {
+                this.swal.fire({
+                  title: "Good job!",
+                  text: "Password cambiata con successo!",
+                  icon: "success"
+                })
+                this.router.navigate(['/welcomeUser'])
 
-            }else{
-              this.swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Qualcosa è andato storto"
-              })
-              this.router.navigate(['/welcomeUser'])
+              } else {
+                this.swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "Qualcosa è andato storto"
+                })
+              }
             }
-          }
-          )
+            )
         }
       )
     })

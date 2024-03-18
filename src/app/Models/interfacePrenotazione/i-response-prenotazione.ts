@@ -1,7 +1,7 @@
 import { IPrenotazione } from "./i-prenotazione";
 
 export interface IResponsePrenotazione {
-  dateResponse: Date;
+  dateResponse: Date|null;
   message:string;
   response:IPrenotazione;
 }

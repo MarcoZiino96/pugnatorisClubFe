@@ -8,8 +8,19 @@
       <div class="card-body">
         <h5 class="card-title">{{iCorso.response.categoria}}</h5>
         <p class="card-text">{{iCorso.response.descrizione}}</p>
-          <p class="card-text">Durata:{{iCorso.response.durata}}</p>
+        <p class="card-text">Durata:{{iCorso.response.durata}}</p>
       </div>
     </div>
   </div>
+  <form [formGroup]="formTurno">
+    <select class="form-select" aria-label="Default select example" formControlName="selectedTurno">
+      <option selected>Scegli un turno</option>
+      <option *ngFor="let turno of iTurni.response" [value]="turno.id">
+        Giorno:{{turno.giornoLezione}}
+        Inizio turno:{{turno.inizioLezione}}
+        Fine turno:{{turno.fineLezione}}
+      </option>
+    </select>
+    <button [disabled]="!formTurno.valid" (click)="sendPrenotazione()" class="btn btn-success">Prenota</button>
+  </form>
 </div>

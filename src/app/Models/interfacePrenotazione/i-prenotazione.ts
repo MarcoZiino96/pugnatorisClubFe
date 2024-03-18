@@ -4,9 +4,9 @@ import { IUser } from "../interfaceUtente/i-user";
 
 export interface IPrenotazione {
   id:number;
-  corso:ICorso;
-  utente:IUser;
-  dataPrenotazione:Date;
-  dataScadenza:Date;
-  turno:ITurno;
+  corso:ICorso|null;
+  utente:IUser|null;
+  dataPrenotazione:Date|null;
+  dataScadenza:Date|null;
+  turno:ITurno|null;
 }

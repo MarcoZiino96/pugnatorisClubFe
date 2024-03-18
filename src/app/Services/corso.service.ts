@@ -7,6 +7,7 @@ import { IResponsePrenotazione } from '../Models/interfacePrenotazione/i-respons
 import { IPrenotazione } from '../Models/interfacePrenotazione/i-prenotazione';
 import { IRespSingleCorso } from '../Models/interfaceCorso/i-resp-single-corso';
 import { ITurno } from '../Models/interfaceTurno/i-turno';
+import { IResponseTurno } from '../Models/interfaceTurno/i-response-turno';
 
 @Injectable({
   providedIn: 'root'
@@ -74,11 +75,4 @@ export class CorsoService {
     }
   }
 
-  getTurniCorso(id:number):Observable<ITurno[]>{
-    return this.http.get<ITurno[]>(`${this.backendUrl}/corso/turni/${id}`)
-  }
-
-prenotazione(prenotazione:IPrenotazione):Observable<IResponsePrenotazione>{
-  return this.http.post<IResponsePrenotazione>(`${this.backendUrl}/prenotazione/create`, prenotazione)
-}
 }
