@@ -1,18 +1,25 @@
 <div class="container">
 
+  <div class="d-flex justify-content-center">
+    <a class="btn" routerLink="/welcomeUser">welcome</a>
+  </div>
+
   <div *ngIf="iUser">
 
     <div *ngIf="showEdit">
-      <a class="btn" routerLink="/welcomeUser">welcome</a>
-
       <form [formGroup]="editFotoForm">
         <div class="form-floating text-center">
+
           <input class="form-control" type="file" id="fileInput" formControlName="fotoProfilo" capture
             (change)="onFileSelected($event)">
           <label for="fileInput">Seleziona un file:</label>
-          <span>
+          <span *ngIf="!fileUrl">
             <img class="rounded-circle" [src]="iUser.response.fotoProfilo" alt="fotoProfilo">
           </span>
+          <span *ngIf="fileUrl">
+            <img  class="rounded-circle" [src]="fileUrl" alt="Anteprima immagine">
+          </span>
+
           <button (click)="editFoto()" class="btn btn-warning">carica</button>
         </div>
       </form>

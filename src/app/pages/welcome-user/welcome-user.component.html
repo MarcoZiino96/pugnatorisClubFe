@@ -1,12 +1,14 @@
-
 <div class="container">
 
-  <a class="btn" [routerLink]="['/welcomeUser/edit/',iUser.id]">modifica</a>
-  <a class="btn" [routerLink]="['/welcomeUser/user-details/',iUser.id]">I miei dettagli</a>
+  <div class="d-flex justify-content-center">
+    <a class="btn" routerLink="/welcomeUser">welcome</a>
+    <a class="btn" [routerLink]="['/welcomeUser/edit/',iUser.id]">modifica</a>
+    <a class="btn" [routerLink]="['/welcomeUser/user-details/',iUser.id]">I miei dettagli</a>
 
+  </div>
   <div class="row gap-3 justify-content-center">
 
-    <div class="card col-11 col-md-6 col-xl-3 mb-2" *ngFor="let c of iCorsi">
+    <div class="card col-12  col-md-6 col-xl-3 mb-2" *ngFor="let c of iCorsi">
 
       <div [ngStyle]="{'background-image':'url('+getImgByCategories(c.categoria)+')'}" class=" imgCardCorso rounded-top"
         alt="fotoCategoria">

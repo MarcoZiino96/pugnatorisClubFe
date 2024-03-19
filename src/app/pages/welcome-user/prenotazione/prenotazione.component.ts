@@ -1,7 +1,7 @@
 import { ISendPrenotazione } from './../../../Models/interfacePrenotazione/i-send-prenotazione';
 import { Component, Inject } from '@angular/core';
 import { CorsoService } from '../../../Services/corso.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../Services/auth.service';
 import { IUser } from '../../../Models/interfaceUtente/i-user';
 import { IRespSingleCorso } from '../../../Models/interfaceCorso/i-resp-single-corso';
@@ -75,7 +75,8 @@ export class PrenotazioneComponent {
     private fb: FormBuilder,
     private turnoSvc: TurnoService,
     private route: ActivatedRoute,
-    private prenotazioneSvc: PrenotazioneService
+    private prenotazioneSvc: PrenotazioneService,
+    private router:Router
   ) { }
 
   ngOnInit() {
@@ -149,6 +150,7 @@ export class PrenotazioneComponent {
               text: "Lezione prenotata con successo!",
               icon: "success"
             })
+            this.router.navigate([`../../welcomeUser/user-details/${this.iUser.id}`])
           } else {
             this.swal.fire({
               icon: "error",

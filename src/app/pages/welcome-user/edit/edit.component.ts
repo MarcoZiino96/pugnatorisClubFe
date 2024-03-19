@@ -238,10 +238,10 @@ export class EditComponent {
 
     if(this.file){
       const READER=new FileReader();
+      READER.readAsDataURL(this.file);
       READER.onload=()=>{
       this.fileUrl = READER.result as string;
     };
-    READER.readAsDataURL(this.file);
   }
   }
 
