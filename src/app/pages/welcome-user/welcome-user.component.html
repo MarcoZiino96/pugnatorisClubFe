@@ -1,19 +1,27 @@
-<a  [routerLink]="['/welcomeUser/edit/',iUser.id]">modifica</a>
-
 
 <div class="container">
 
-  <div class="row">
-    <div class="card col-12 col-md-6 col-xl-4 mb-2" *ngFor="let c of iCorsi">
-      <div>
-        <img [src]="getImgByCategories(c.categoria)" class="card-img-top imgCard" alt="fotoCategoria">
+  <a class="btn" [routerLink]="['/welcomeUser/edit/',iUser.id]">modifica</a>
+  <a class="btn" [routerLink]="['/welcomeUser/user-details/',iUser.id]">I miei dettagli</a>
+
+  <div class="row gap-3 justify-content-center">
+
+    <div class="card col-11 col-md-6 col-xl-3 mb-2" *ngFor="let c of iCorsi">
+
+      <div [ngStyle]="{'background-image':'url('+getImgByCategories(c.categoria)+')'}" class=" imgCardCorso rounded-top"
+        alt="fotoCategoria">
       </div>
+
       <div class="card-body">
         <h5 class="card-title">{{c.categoria}}</h5>
         <p class="card-text">{{c.descrizione}}</p>
-          <p class="card-text">Durata:{{c.durata}}</p>
-          <a [routerLink]="['/welcomeUser/prenotazione',iUser.id,  c.id]" class="btn btn-success"> Scopri di più</a>
+        <p class="card-text">Durata:{{c.durata}}</p>
+        <a [routerLink]="['/welcomeUser/prenotazione',iUser.id,  c.id]" class="btn btn-success"> Scopri di più</a>
       </div>
+
+
     </div>
+
   </div>
+
 </div>

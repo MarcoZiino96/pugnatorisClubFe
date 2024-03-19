@@ -10,6 +10,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { IResponseData } from '../Models/interfaceUtente/i-response-data';
 import { ChangePassword } from '../Models/interfaceUtente/change-password';
+import { IPrenotazione } from '../Models/interfacePrenotazione/i-prenotazione';
+import { IResponsePrenotazione } from '../Models/interfacePrenotazione/i-response-prenotazione';
 
 
 @Injectable({
@@ -104,6 +106,10 @@ export class AuthService {
 
   changePassword(id:number, password:ChangePassword):Observable<any>{
     return this.http.patch(`${environment.backEndUrl}/utente/edit/password/${id}`, password);
+}
+
+getPrenotazioni(id:number):Observable<IResponsePrenotazione>{
+  return this.http.get<IResponsePrenotazione>(`${environment.backEndUrl}/utente/prenotazioni/${id}`);
 }
 
 }

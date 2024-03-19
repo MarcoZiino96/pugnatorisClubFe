@@ -3,11 +3,8 @@ import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { IResponseCorso } from '../Models/interfaceCorso/i-response-corso';
 import { Observable, catchError } from 'rxjs';
-import { IResponsePrenotazione } from '../Models/interfacePrenotazione/i-response-prenotazione';
-import { IPrenotazione } from '../Models/interfacePrenotazione/i-prenotazione';
 import { IRespSingleCorso } from '../Models/interfaceCorso/i-resp-single-corso';
-import { ITurno } from '../Models/interfaceTurno/i-turno';
-import { IResponseTurno } from '../Models/interfaceTurno/i-response-turno';
+
 
 @Injectable({
   providedIn: 'root'

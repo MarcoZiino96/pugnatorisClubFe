@@ -16,6 +16,7 @@ import { IPassword } from '../../../Models/interfaceUtente/i-password';
 
 export class EditComponent {
 
+  fileUrl!: string;
   match: boolean = false;
   msg!: IEdit;
   errorMsg!: IEdit;
@@ -234,6 +235,14 @@ export class EditComponent {
 
   onFileSelected(event: any) {
     this.file = event.target.files[0];
+
+    if(this.file){
+      const READER=new FileReader();
+      READER.onload=()=>{
+      this.fileUrl = READER.result as string;
+    };
+    READER.readAsDataURL(this.file);
+  }
   }
 
   edit() {

@@ -12,9 +12,10 @@
       </div>
     </div>
   </div>
+
   <form [formGroup]="formTurno">
     <select class="form-select" aria-label="Default select example" formControlName="selectedTurno">
-      <option selected>Scegli un turno</option>
+      <option value="" hidden disabled>Scegli un turno</option>
       <option *ngFor="let turno of iTurni.response" [value]="turno.id">
         Giorno:{{turno.giornoLezione}}
         Inizio turno:{{turno.inizioLezione}}

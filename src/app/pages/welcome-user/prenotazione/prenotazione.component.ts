@@ -94,11 +94,17 @@ export class PrenotazioneComponent {
       }))
 
     })
+
+
+
+
   }
 
   formTurno: FormGroup = this.fb.group({
     selectedTurno: ["", Validators.required]
   })
+
+
 
   getTurniCorso() {
     this.turnoSvc.getTurniCorso(this.iCorso.response.id).subscribe((res) => {
@@ -109,6 +115,7 @@ export class PrenotazioneComponent {
   sendPrenotazione() {
 
     const selectTurnoId = this.formTurno.get('selectedTurno')?.value;
+
     this.turnoSvc.getById(selectTurnoId).subscribe((res) => {
       this.iTurno = res
 

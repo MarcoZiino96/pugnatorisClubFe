@@ -29,18 +29,6 @@
         </div>
 
         <div *ngIf="isLoggedIn$">
-
-          <li class="nav-item dropdown">
-            <a (click)="collapsedDrop = !collapsedDrop" class="nav-link dropdown-toggle" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              Categorie
-            </a>
-
-            <ul [ngClass]="{show:collapsedDrop}" class="dropdown-menu">
-              <li><a class="dropdown-item">scsdxsaasc</a></li>
-            </ul>
-          </li>
-
           <button (click)="logOut()" class="btn btn-danger me-5">
             Logout
           </button>

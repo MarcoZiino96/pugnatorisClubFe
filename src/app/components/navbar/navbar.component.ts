@@ -11,7 +11,6 @@ export class NavbarComponent {
   constructor(private authSvc: AuthService){ }
 
   collapsed:boolean = false;
-  collapsedDrop:boolean = false;
   isLoggedIn$!:boolean;
 
   ngOnInit(){

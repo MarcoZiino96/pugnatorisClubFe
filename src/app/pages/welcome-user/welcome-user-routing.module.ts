@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { WelcomeUserComponent } from './welcome-user.component';
 import { EditComponent } from './edit/edit.component';
 import { PrenotazioneComponent } from './prenotazione/prenotazione.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 const routes: Routes = [
 {
@@ -13,7 +14,11 @@ const routes: Routes = [
 },
 {
   path: 'prenotazione/:idUtente/:idCorso', component: PrenotazioneComponent, title: 'Prenotazione - PugnatorisClub'
-}
+},
+{
+  path: 'user-details/:id', component: UserDetailsComponent, title: 'UserDetails - PugnatorisClub'
+},
+
 ];
 
 @NgModule({

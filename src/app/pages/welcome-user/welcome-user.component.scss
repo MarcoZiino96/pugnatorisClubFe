@@ -1,5 +1,17 @@
-.imgCard {
-  height: 250px;
-  width: 100%;
-  // box-shadow: 2px 2px 5px var(--aranGiallo);
+.imgCardCorso{
+  width: 280px;
+  height: 200px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center ;
+
+  @media(min-width:375px){
+  }
+}
+.card{
+  width: 280px;
+  box-shadow: 2px 2px 2px ;
+}
+.row > *{
+  padding: 0;
 }

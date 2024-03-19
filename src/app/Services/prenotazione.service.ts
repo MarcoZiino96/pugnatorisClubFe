@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
-import { IPrenotazione } from '../Models/interfacePrenotazione/i-prenotazione';
 import { IResponsePrenotazione } from '../Models/interfacePrenotazione/i-response-prenotazione';
 import { environment } from '../../environments/environment.development';
 import { ISendPrenotazione } from '../Models/interfacePrenotazione/i-send-prenotazione';
@@ -31,5 +30,9 @@ export class PrenotazioneService {
 
   sendPrenotazione(prenotazione:ISendPrenotazione):Observable<IResponsePrenotazione>{
     return this.http.post<IResponsePrenotazione>(`${this.backendUrl}/prenotazione/create`, prenotazione)
+  }
+
+  deletePrenotazione(id:number):Observable<void>{
+   return  this.http.delete<void>(`${this.backendUrl}/prenotazione/delete/${id}`)
   }
 }
