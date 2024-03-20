@@ -1,0 +1,90 @@
+
+.boxContainer {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.imageHome{
+  position: absolute;
+  background-image: url("../../../assets/img/photoHome.jpeg");
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.imageHome::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.content {
+  position: relative;
+  top:150px;
+  z-index: 1;
+}
+
+.textColor, .textNormal{
+  font-weight:700;
+  font-size: 2.2em;
+}
+
+.textColor{
+  color:var(--arancione)
+}
+
+.textNormal, .btnGeneral, .p.General{
+  color: white;
+  font-weight: 700;
+}
+
+.btnGeneral, .pGeneral{
+font-size: 1rem;
+}
+
+.btnGeneral{
+  background-color: var(--arancione);
+}
+
+div.content span{
+  position:absolute;
+  left: -13px;
+  animation: assolvenza 22s infinite;
+  opacity: 0;
+}
+
+.underAnimate{
+  background-color: var(--black);
+}
+
+div.content span:nth-of-type(2) {
+  animation-delay: 6s;
+}
+
+div.content span:nth-of-type(3) {
+  animation-delay: 14s;
+}
+
+@keyframes assolvenza{
+  0%{opacity:0; transform:translateY(60%)}
+  20%{ opacity: 1; transform:translateY(0%)}
+  60%{opacity: 0; transform:translateY(-120%)}
+  100%{opacity: 0;transform:translateY(60%)}
+}
+
+
+
+
+
+
+
+

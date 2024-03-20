@@ -39,7 +39,6 @@ export class WelcomeUserComponent {
  getImgByCategories(categoria:string){
   return this.corsoSvc.getImgByCategories(categoria)
  }
-
 }
 
 

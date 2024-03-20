@@ -1,5 +1,40 @@
 .nav-logo{
-
   height: 80px;
-
 }
+
+nav.navbar{
+  z-index: 100;
+  background-color: var(--black);
+  position: sticky;
+  top: 0;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-transparent {
+  background-color: transparent;
+}
+
+.navbar-black {
+  background-color: var(--black);
+}
+
+.bi.bi-list{
+  color: var(--arancione);
+  font-size: 2rem;
+  background-color: var(--black);
+}
+
+.bi.bi-caret-left-fill, .bi.bi-list{
+  color: var(--arancione);
+}
+
+.navbar-nav a{
+  color: var(--arancione);
+  font-weight: 700;
+}
+
+.navbar-nav li:hover{
+  color: white;
+}
+
+

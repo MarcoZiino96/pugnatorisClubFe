@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: '.app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
+  styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
 
@@ -12,6 +12,8 @@ export class NavbarComponent {
 
   collapsed:boolean = false;
   isLoggedIn$!:boolean;
+  isNavbarTransparent:boolean = true;
+  isNavbarBlack:boolean = false;
 
   ngOnInit(){
     this.authSvc.isLoggedIn$.subscribe(data=> this.isLoggedIn$ = data)

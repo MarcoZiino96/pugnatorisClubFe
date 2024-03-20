@@ -1,31 +1,38 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg">
 
   <div class="container-fluid">
 
     <a class="navbar-brand" href="#">
-      <img class="nav-logo" src="../../../assets/pugnatoris-club-logo.jpg" alt="logo">
+      <img class="nav-logo" src="../../../assets/pugnatoris-club-logo.png" alt="logo">
     </a>
 
-    <button (click)="collapsed = !collapsed" class="navbar-toggler" type="button" data-bs-toggle="collapse"
+    <button class="btn btnToggle" (click)="collapsed = !collapsed" type="button" data-bs-toggle="collapse"
       data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
       aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <span><i class="bi bi-list"></i></span>
     </button>
 
     <div [ngClass]="{show:collapsed}" class="collapse navbar-collapse show" id="navbarNavDropdown">
+
       <ul class="navbar-nav">
 
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/homepage">Home</a>
+        <li class="nav-item d-flex align-items-baseline">
+          <a (click)="collapsed = !collapsed" class="nav-link active" aria-current="page" routerLink="/homepage">Home</a>
+          <i class="bi bi-caret-left-fill"></i>
         </li>
 
         <div *ngIf="!isLoggedIn$">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="auth/login">Login</a>
+
+          <li class="nav-item d-flex align-items-center">
+            <a  (click)="collapsed = !collapsed" class="nav-link" routerLink="auth/login">Login</a>
+           <i class="bi bi-caret-left-fill"></i>
+
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="auth/register">Register</a>
+          <li class="nav-item d-flex align-items-center">
+            <a  (click)="collapsed = !collapsed" class="nav-link" routerLink="auth/register">Register</a>
+           <i class="bi bi-caret-left-fill"></i>
           </li>
+
         </div>
 
         <div *ngIf="isLoggedIn$">
@@ -35,6 +42,8 @@
 
         </div>
       </ul>
+
     </div>
   </div>
+
 </nav>
