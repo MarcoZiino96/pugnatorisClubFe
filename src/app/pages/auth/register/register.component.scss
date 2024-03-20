@@ -1,0 +1,23 @@
+
+.boxRegister{
+  background-color: var(--black);
+  height: 100vh;
+}
+
+.titleRegister{
+  color: var(--arancione);
+  font-weight: 700;
+}
+
+.form-floating{
+  margin-bottom: 5px;
+}
+
+.btnRegister{
+  border-radius: 30px;
+  background-color: var(--arancione);
+  font-weight: 700;
+  color: white;
+  // box-shadow: 4px 4px 4px var(--arancione) ;
+  width: 50%;
+}
