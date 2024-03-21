@@ -58,7 +58,8 @@
 
             </a>
 
-            <a (click)="collapsed = !collapsed" class="nav-link d-flex justify-content-between" routerLink="auth/register">
+            <a (click)="collapsed = !collapsed" class="nav-link d-flex justify-content-between"
+              routerLink="auth/register">
 
               <li class="nav-item ">
                 Register
@@ -83,7 +84,7 @@
 
           <a (click)="collapsed = !collapsed" class="nav-link d-flex justify-content-between" routerLink="/maestri">
             <li class="nav-item ">
-              Maestri
+              Iron Fighters
             </li>
             <div class="iconCanvas">
               <i class="bi bi-arrow-right"></i>
@@ -91,9 +92,16 @@
           </a>
 
           <div *ngIf="isLoggedIn$">
-            <button (click)="logOut()" class="btn btn-danger me-5">
-              Logout
-            </button>
+
+            <a class=" logOut nav-link d-flex justify-content-between text-danger" (click)="logOut()">
+              <li class="nav-item ">
+                Logout
+              </li>
+
+              <div class="iconCanvas">
+                <i class="bi bi-box-arrow-left text-danger"></i>
+              </div>
+            </a>
 
           </div>
 

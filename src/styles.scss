@@ -25,9 +25,9 @@
 
 // stile generale per i form
 
-.boxLogin, .boxRegister{
+.boxForm{
   background-color: var(--black);
-  height: 100vh;
+  height: 100%;
 }
 
 .titleForm{
@@ -45,5 +45,5 @@
   background-color: var(--arancione);
   font-weight: 700;
   color: white;
-  width: 50%;
+  width: 125px;
 }

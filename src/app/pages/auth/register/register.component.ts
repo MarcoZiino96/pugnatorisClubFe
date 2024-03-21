@@ -16,6 +16,7 @@ export class RegisterComponent {
   msg!:IRegister;
   errorMsg!:IRegister;
   registered : boolean=false;
+  showPassword: boolean = false;
 
   constructor(private fb:FormBuilder, private authSvc:AuthService,
     @Inject('Swal') private swal: any){

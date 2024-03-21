@@ -11,9 +11,10 @@ nav.navbar, .bodyOff{
 }
 
 nav.navbar{
-  z-index: 100;
-  position: sticky;
+  width: 100%;
+  position: fixed;
   top: 0;
+  z-index: 100;
 }
 
 .bi.bi-list{
@@ -29,6 +30,10 @@ nav.navbar{
 
 .bi.bi-caret-left-fill, .bi.bi-list{
   color: var(--arancione);
+}
+
+.logOut{
+  cursor: pointer;
 }
 
 .navbar-nav a, .offcanvas-title{
