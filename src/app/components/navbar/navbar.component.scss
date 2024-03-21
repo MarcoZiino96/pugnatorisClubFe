@@ -3,7 +3,7 @@
 }
 
 nav.navbar, .bodyOff{
-  background-color: var(--black);
+  background: radial-gradient(circle, rgba(23,29,41,1) 69%, rgba(13,11,9,1) 100%);
 }
 
 .btnToggle{
@@ -20,7 +20,7 @@ nav.navbar{
 .bi.bi-list{
   color: var(--arancione);
   font-size: 2rem;
-  background-color: var(--black);
+  background-color:transparent;
 }
 
 .btlClose{
@@ -28,7 +28,7 @@ nav.navbar{
   font-size: 2rem;
 }
 
-.bi.bi-caret-left-fill, .bi.bi-list{
+.bi.bi-caret-left-fill, .bi.bi-list {
   color: var(--arancione);
 }
 

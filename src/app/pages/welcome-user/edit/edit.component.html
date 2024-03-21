@@ -1,9 +1,11 @@
 <div class="container">
 
   <div class="d-flex justify-content-center">
-    <a class="btn" routerLink="/welcomeUser">welcome</a>
+    <a class="btn icon" routerLink="/welcomeUser">
+      <i class="bi bi-door-open"></i>
+      <p>WELCOME</p>
+    </a>
   </div>
-
   <div *ngIf="iUser">
 
     <div *ngIf="showEdit">
@@ -17,7 +19,7 @@
             <img class="rounded-circle" [src]="iUser.response.fotoProfilo" alt="fotoProfilo">
           </span>
           <span *ngIf="fileUrl">
-            <img  class="rounded-circle" [src]="fileUrl" alt="Anteprima immagine">
+            <img class="rounded-circle" [src]="fileUrl" alt="Anteprima immagine">
           </span>
 
           <button (click)="editFoto()" class="btn btn-warning">carica</button>
