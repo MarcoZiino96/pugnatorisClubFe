@@ -1,49 +1,108 @@
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar">
 
   <div class="container-fluid">
 
-    <a class="navbar-brand" href="#">
+
+    <a class="navbar-brand">
       <img class="nav-logo" src="../../../assets/pugnatoris-club-logo.png" alt="logo">
     </a>
 
-    <button class="btn btnToggle" (click)="collapsed = !collapsed" type="button" data-bs-toggle="collapse"
-      data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-      aria-label="Toggle navigation">
-      <span><i class="bi bi-list"></i></span>
+
+    <button (click)="collapsed = !collapsed" class="btn btnToggle" type="button" data-bs-toggle="offcanvas"
+      data-bs-backdrop="true" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+      <i class="bi bi-list"></i>
     </button>
 
-    <div [ngClass]="{show:collapsed}" class="collapse navbar-collapse show" id="navbarNavDropdown">
 
-      <ul class="navbar-nav">
+    <div [ngClass]="{show:collapsed}" class="offcanvas offcanvas-end " tabindex="-1" id="offcanvasRight"
+      aria-labelledby="offcanvasRightLabel">
 
-        <li class="nav-item d-flex align-items-baseline">
-          <a (click)="collapsed = !collapsed" class="nav-link active" aria-current="page" routerLink="/homepage">Home</a>
-          <i class="bi bi-caret-left-fill"></i>
-        </li>
 
-        <div *ngIf="!isLoggedIn$">
+      <div class="offcanvas-header bodyOff d-flex justify-content-between">
+        <h5 class="offcanvas-title" id="offcanvasRightLabel">MENU'</h5>
 
-          <li class="nav-item d-flex align-items-center">
-            <a  (click)="collapsed = !collapsed" class="nav-link" routerLink="auth/login">Login</a>
-           <i class="bi bi-caret-left-fill"></i>
-
-          </li>
-          <li class="nav-item d-flex align-items-center">
-            <a  (click)="collapsed = !collapsed" class="nav-link" routerLink="auth/register">Register</a>
-           <i class="bi bi-caret-left-fill"></i>
-          </li>
-
+        <div (click)="collapsed = !collapsed" type="button" class=" btnClose" data-bs-dismiss="offcanvas"
+          aria-label="Close">
+          <i class="bi bi-x-lg text-white"></i>
         </div>
 
-        <div *ngIf="isLoggedIn$">
-          <button (click)="logOut()" class="btn btn-danger me-5">
-            Logout
-          </button>
+      </div>
 
-        </div>
-      </ul>
+      <div class="offcanvas-body bodyOff">
+
+        <ul class="navbar-nav">
+
+          <a (click)="collapsed = !collapsed" class="nav-link active d-flex justify-content-between" aria-current="page"
+            routerLink="/homepage">
+
+            <li class="nav-item">
+              Home
+            </li>
+
+            <div class="iconCanvas">
+              <i class="bi bi-arrow-right"></i>
+            </div>
+
+          </a>
+
+          <div *ngIf="!isLoggedIn$">
+
+            <a (click)="collapsed = !collapsed" class="nav-link d-flex justify-content-between" routerLink="auth/login">
+
+              <li class="nav-item ">
+                Login
+              </li>
+              <div class="iconCanvas">
+                <i class="bi bi-arrow-right"></i>
+              </div>
+
+            </a>
+
+            <a (click)="collapsed = !collapsed" class="nav-link d-flex justify-content-between" routerLink="auth/register">
+
+              <li class="nav-item ">
+                Register
+              </li>
+              <div class="iconCanvas">
+                <i class="bi bi-arrow-right"></i>
+              </div>
+
+            </a>
+
+          </div>
+
+          <a (click)="collapsed = !collapsed" class="nav-link d-flex justify-content-between" routerLink="/chi-siamo">
+
+            <li class="nav-item ">
+              Chi Siamo
+            </li>
+            <div class="iconCanvas">
+              <i class="bi bi-arrow-right"></i>
+            </div>
+          </a>
+
+          <a (click)="collapsed = !collapsed" class="nav-link d-flex justify-content-between" routerLink="/maestri">
+            <li class="nav-item ">
+              Maestri
+            </li>
+            <div class="iconCanvas">
+              <i class="bi bi-arrow-right"></i>
+            </div>
+          </a>
+
+          <div *ngIf="isLoggedIn$">
+            <button (click)="logOut()" class="btn btn-danger me-5">
+              Logout
+            </button>
+
+          </div>
+
+        </ul>
+      </div>
+
 
     </div>
+
   </div>
 
 </nav>

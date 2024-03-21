@@ -2,20 +2,18 @@
   height: 80px;
 }
 
+nav.navbar, .bodyOff{
+  background-color: var(--black);
+}
+
+.btnToggle{
+  margin-top: 15px;
+}
+
 nav.navbar{
   z-index: 100;
-  background-color: var(--black);
   position: sticky;
   top: 0;
-  transition: background-color 0.3s ease;
-}
-
-.navbar-transparent {
-  background-color: transparent;
-}
-
-.navbar-black {
-  background-color: var(--black);
 }
 
 .bi.bi-list{
@@ -24,17 +22,38 @@ nav.navbar{
   background-color: var(--black);
 }
 
+.btlClose{
+  color: white;
+  font-size: 2rem;
+}
+
 .bi.bi-caret-left-fill, .bi.bi-list{
   color: var(--arancione);
 }
 
-.navbar-nav a{
-  color: var(--arancione);
+.navbar-nav a, .offcanvas-title{
+  color:white;
   font-weight: 700;
 }
 
-.navbar-nav li:hover{
-  color: white;
+.nav-bar .container-fluid .offcanvas-body ul.navbar-nav a.nav-link:hover{
+  color:var(--arancione);
 }
+
+.offcanvas.offcanvas-end{
+  @media (min-width: 320px){
+    width:75%;
+  }
+  @media (min-width: 480px){
+    width:50%;
+  }
+  @media (min-width: 700px){
+    width:35%;
+  }
+  @media (min-width: 1000px){
+    width:25%;
+  }
+}
+
 
 

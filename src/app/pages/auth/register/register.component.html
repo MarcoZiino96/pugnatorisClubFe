@@ -7,7 +7,7 @@
 
       <form [formGroup]="registerForm" (ngSubmit)="register()">
 
-        <h3 class=" titleRegister text-center ">REGISTRAZIONE</h3>
+        <h3 class=" titleForm text-center mb-4">REGISTRAZIONE</h3>
 
         <div class="form-floating">
           <input id="nome" type="text" class="form-control" formControlName="nome">
@@ -66,14 +66,14 @@
             {{msg.confirmPassword}}
           </span>
         </div>
-        <button [disabled]="registerForm.invalid" class=" btnRegister  py-2 my-5" type="submit">REGISTRAMI</button>
+        <button [disabled]="registerForm.invalid" class=" btnForm  py-2 my-5" type="submit">REGISTRAMI</button>
       </form>
     </div>
 
     <div *ngIf="registered">
       <h2 class="fw-bold mb-5">Ciao {{this.registerForm.value['username']}}. La registrazione è avvenuta con successo!
       </h2>
-      <a type="submit" routerLink="../../auth/login" class="btn btn-primary btn-block btn-login">
+      <a type="submit" routerLink="../../auth/login" class="btn btnForm">
         Vai al Login
       </a>
     </div>

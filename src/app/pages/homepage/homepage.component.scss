@@ -29,13 +29,17 @@
 
 .content {
   position: relative;
-  top:50px;
+  top:200px;
   z-index: 1;
+
 }
 
 .textColor, .textNormal{
   font-weight:700;
   font-size: 2.2em;
+  @media(min-width: 940px){
+    font-size: 2.6rem;
+  }
 }
 
 .textColor{
@@ -49,29 +53,35 @@
 
 .btnGeneral, .pGeneral{
 font-size: 1rem;
+@media(min-width: 940px){
+  font-size: 2rem;
+}
 }
 
 .btnGeneral{
   background-color: var(--arancione);
 }
 
-div.content span{
+div.content span.animatedSpan{
   position:absolute;
   left: 5px;
   animation: assolvenza 22s infinite;
   opacity: 0;
+  @media(min-width:768px){
+    right: 20px;
+  }
 }
 
-.underAnimate{
-  background-color: var(--black);
+div.content span:nth-of-type(1) {
+  animation-delay: 1s;
 }
 
 div.content span:nth-of-type(2) {
-  animation-delay: 6s;
+  animation-delay: 8s;
 }
 
 div.content span:nth-of-type(3) {
-  animation-delay: 14s;
+  animation-delay: 16s;
 }
 
 @keyframes assolvenza{

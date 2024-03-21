@@ -16,13 +16,34 @@
 }
 
 .valid {
-
-  color:green;
-
+  color:rgb(9, 242, 9);
 }
 
 .invalid {
+  color: rgb(255, 31, 31);
+}
 
-  color: red;
+// stile generale per i form
 
+.boxLogin, .boxRegister{
+  background-color: var(--black);
+  height: 100vh;
+}
+
+.titleForm{
+  color: var(--arancione);
+  font-weight: 700;
+}
+
+.form-floating{
+  margin-bottom: 5px;
+}
+
+
+.btnForm{
+  border-radius: 30px;
+  background-color: var(--arancione);
+  font-weight: 700;
+  color: white;
+  width: 50%;
 }

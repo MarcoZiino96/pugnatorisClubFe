@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { DefaultInterceptor } from './Interceptors/default.interceptor';
 import Swal from 'sweetalert2';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -18,7 +19,8 @@ import Swal from 'sweetalert2';
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
