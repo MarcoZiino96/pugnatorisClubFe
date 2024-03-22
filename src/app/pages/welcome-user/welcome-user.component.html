@@ -18,17 +18,13 @@
   <div class="row gap-3 justify-content-center">
 
     <div class="card col-12  col-md-6 col-xl-3 mb-2" *ngFor="let c of iCorsi">
-
-      <!-- <div [ngStyle]="{'background-image':'url('+getImgByCategories(c.categoria)+')'}" class=" imgCardCorso rounded-top"
-        alt="fotoCategoria">
-      </div> -->
       <img class=" imgCardCorso rounded-top" [src]="getImgByCategories(c.categoria)" alt="imdCorso">
       <div class="card-body text-center fw-bold">
         <h5 class="card-title">{{c.categoria}}</h5>
         <p class="card-text">{{c.descrizione}}</p>
-        <p class="card-text">Durata:{{c.durata}}</p>
+        <p class="card-text">Periodicità:{{c.durata}}</p>
         <div class="text-center">
-        <a [routerLink]="['/welcomeUser/prenotazione',iUser.id,  c.id]" class="btn btnForm"> Scopri di più</a>
+        <a [routerLink]="['/welcomeUser/prenotazione',iUser.id,  c.id]" class=" text-decoration-none btnForm p-2"> Scopri di più</a>
         </div>
       </div>
 

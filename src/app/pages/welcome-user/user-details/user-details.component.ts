@@ -24,7 +24,7 @@ export class UserDetailsComponent {
 
   ngOnInit() {
     this.route.params.subscribe((params: any) => {
-      if (params.id !== undefined) {
+
         this.authSvc.getPrenotazioni(params.id).subscribe((res=> {
           if (!res) {
             this.swal.fire({
@@ -41,9 +41,7 @@ export class UserDetailsComponent {
             console.log(this.myPrenotazioni);
           }
         }))
-      }else{
-        return
-      }
+
 
     })
   }

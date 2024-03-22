@@ -7,62 +7,58 @@
     </a>
   </div>
 
-  <h3 class="text-center text-white fw-bold">LE TUE PRENOTAZIONI</h3>
+  <h3 class=" text-white fw-bold text-center py-3">LE TUE PRENOTAZIONI</h3>
 
   <div *ngIf="showPrenotazioni">
 
-    <div class="row">
+      <div class="row gap-3 justify-content-center pb-5">
 
-      <div class="card col-12 col-md-6 col-xl-4 mb-2" *ngFor="let p of myPrenotazioni.response">
-        <img class=" imgCardCorso rounded-top" [src]="getImgByCategories(p.corso.categoria)" alt="imdCorso">
+        <div class="card col-12  col-md-6 col-xl-3 mb-2" *ngFor="let p of myPrenotazioni.response">
+          <img class=" imgCardCorso rounded-top" [src]="getImgByCategories(p.corso.categoria)" alt="imdCorso">
 
-        <div class="row">
+          <div class="card-body text-center p-3">
 
-          <div class="card-body text-center fw-bold">
+            <h5 class="card-title">{{p.corso.categoria}}</h5>
 
-            <div>
-              <h5 class="card-title">{{p.corso.categoria}}</h5>
-            </div>
+            <p class="card-text">{{p.corso.descrizione}}</p>
 
-            <div>
-              <p class="card-text">Pubblico</p>
-              <p class="card-text">{{p.corso.descrizione}}</p>
-            </div>
+           <div class="d-flex justify-content-between">
+            <div class="mt-3">
+              <p class="card-text fw-bold">MAESTRO</p>
+              <p class="card-text">{{p.corso.maestro?.nome}} {{p.corso.maestro?.cognome}}</p>
+             </div>
 
-            <div>
-              <p class="card-text">Durata</p>
-              <p class="card-text">{{p.corso.durata}}</p>
-            </div>
-
-            <div>
-              <p class="card-text">Ci vediamo</p>
-              <p class="card-text">{{p.turno.giornoLezione}}</p>
+             <div class="mt-3">
+              <p class="card-text fw-bold">DATA</p>
               <p class="card-text">{{p.dataScadenza}}</p>
-            </div>
+             </div>
+           </div>
 
-            <div>
-              <p class="card-text">Inizierà alle</p>
-              <p class="card-text">{{p.turno.inizioLezione}}</p>
-            </div>
-
-            <div>
-              <p class="card-text">Finirà alle</p>
-              <p class="card-text">{{p.turno.fineLezione}}</p>
-            </div>
-
-            <div>
-              <button (click)="deletePrenotazione(p.id)" class="btn btn-danger">elimina</button>
-            </div>
-
+           <div class="mt-3">
+            <p class="card-text fw-bold">CI VEDIAMO</p>
+            <p class="card-text">{{p.turno.giornoLezione}}</p>
           </div>
+
+            <div class="d-flex justify-content-between">
+              <p class="card-text"><span>START-</span>{{p.turno.inizioLezione}}</p>
+              <p class="card-text"><span>FINISH-</span>{{p.turno.fineLezione}}</p>
+            </div>
+
+            <div class="pt-3 fs-3" (click)="deletePrenotazione(p.id)">
+              <i class="bi bi-trash2-fill text-danger"></i>
+             </div>
+          </div>
+
+
         </div>
+
       </div>
 
-    </div>
-    <div class="text-center fw-bold text-white" *ngIf="!showPrenotazioni">
-      <h1>Non ci sono dettagli da visualizzare</h1>
-    </div>
-
-
   </div>
+
+  <div class="fw-bold text-white text-center" *ngIf="!showPrenotazioni">
+    <h1>Non ci sono dettagli da visualizzare</h1>
+  </div>
+
+
 </div>

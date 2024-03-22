@@ -34,7 +34,7 @@
 
           <input class="form-control" type="file" id="fileInput" formControlName="fotoProfilo" capture
             (change)="onFileSelected($event)">
-          <button [disabled]="!editFotoForm.valid" (click)="editFoto()" class="btn btnForm mt-3">carica</button>
+          <button (click)="editFoto()" class="btn btnForm mt-3">carica</button>
         </div>
       </form>
 
@@ -73,7 +73,7 @@
           </span>
         </div>
         <div class="text-center py-3">
-          <button [disabled]="!editForm.valid" class="btn btnForm py-2" type="submit">Modifica</button>
+          <button class="btn btnForm py-2" type="submit">Modifica</button>
         </div>
       </form>
 
@@ -118,7 +118,7 @@
       </div>
 
       <div class="text-center py-3">
-        <button [disabled]="!editPasswordForm.valid" (click)="editPassword()" class="btn btnEdit">
+        <button (click)="editPassword()" class="btn btnEdit">
           Modifica
         </button>
       </div>

@@ -262,7 +262,7 @@ export class EditComponent {
               this.swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: "Problemi di comunicazione con il server, controlla la tua conessione"
+                text: "Compila tutti i campi correttamente"
               });
             }
             throw error;
@@ -349,8 +349,18 @@ export class EditComponent {
                   title: "Oops...",
                   text: "La tua vecchia password è errata"
                 });
+
                 this.editPasswordForm.reset();
-              } else if (error.error.message === 'Password vecchia uguale a quella nuova') {
+              } if (error.error.message === "[campo obbligatorio, campo obbligatorio]" || error.error.message === "[campo obbligatorio]"){
+                this.swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "Compila correttamente tutti i campi"
+                });
+
+                this.editPasswordForm.reset();
+              }
+              else if (error.error.message === 'Password vecchia uguale a quella nuova') {
                 this.swal.fire({
                   icon: "error",
                   title: "Oops...",

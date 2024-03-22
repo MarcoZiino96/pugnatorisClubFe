@@ -64,7 +64,7 @@ export class PrenotazioneComponent {
       numeroMassimoPartecipanti: 0,
       costoMensile: 0,
       durata: '',
-      insegnante: null
+      maestro: null
     }
   }
 

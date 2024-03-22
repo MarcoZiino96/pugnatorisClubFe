@@ -7,5 +7,5 @@ export interface ICorso {
   numeroMassimoPartecipanti: number;
   costoMensile: number;
   durata: string;
-  insegnante:Insegnante|null;
+  maestro:Insegnante|null;
 }
