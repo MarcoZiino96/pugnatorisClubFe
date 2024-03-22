@@ -2,7 +2,7 @@
 .boxContainer {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  height: 80vh;
 }
 
 .imageHome{
@@ -29,16 +29,25 @@
 
 .content {
   position: relative;
-  top:200px;
+  top:100px;
   z-index: 1;
+  @media (min-width:1600px){
+    top: 150px;
+  }
+  @media (min-width:1900px){
+    top: 250px;
+  }
 
 }
 
 .textColor, .textNormal{
   font-weight:700;
   font-size: 2.2em;
-  @media(min-width: 940px){
+  @media(min-width: 1400px){
     font-size: 2.6rem;
+  }
+  @media(min-width: 1900px){
+    font-size: 3rem;
   }
 }
 
@@ -53,8 +62,11 @@
 
 .btnGeneral, .pGeneral{
 font-size: 1rem;
-@media(min-width: 940px){
+@media(min-width: 1400px){
   font-size: 2rem;
+}
+@media(min-width: 1400px){
+  font-size: 2.6rem;
 }
 }
 
@@ -69,6 +81,9 @@ div.content span.animatedSpan{
   opacity: 0;
   @media(min-width:768px){
     right: 20px;
+  }
+  @media(min-width:2000px){
+    right: 25px;
   }
 }
 

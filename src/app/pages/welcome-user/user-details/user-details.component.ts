@@ -1,3 +1,4 @@
+import { CorsoService } from './../../../Services/corso.service';
 import { Component, Inject } from '@angular/core';
 import { AuthService } from '../../../Services/auth.service';
 import { ActivatedRoute } from '@angular/router';
@@ -10,43 +11,40 @@ import { PrenotazioneService } from '../../../Services/prenotazione.service';
   styleUrl: './user-details.component.scss'
 })
 export class UserDetailsComponent {
-
-  myPrenotazioni: IResponsePrenotazione = {
-    dateResponse: new Date(),
-    message: '',
-    response: [
-      {
-        corso: null,
-        dataPrenotazione: new Date(),
-        dataScadenza: new Date(),
-        id: 0,
-        turno: null,
-        utente: null,
-      }
-    ]
-  }
+  showPrenotazioni!: boolean;
+  myPrenotazioni!: IResponsePrenotazione
 
   constructor(
     private authSvc: AuthService,
     @Inject('Swal') private swal: any,
     private route: ActivatedRoute,
+    private corsoSvc: CorsoService,
     private prenotazioneSvc: PrenotazioneService
   ) { }
 
   ngOnInit() {
     this.route.params.subscribe((params: any) => {
-      this.authSvc.getPrenotazioni(params.id).subscribe((res => {
-        if (!res) {
-          this.swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Problemi di comunicazione con il server, controlla la tua conessione"
-          });
-        }
-        if (res) {
-          this.myPrenotazioni = res
-        }
-      }))
+      if (params.id !== undefined) {
+        this.authSvc.getPrenotazioni(params.id).subscribe((res=> {
+          if (!res) {
+            this.swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Problemi di comunicazione con il server, controlla la tua conessione"
+            });
+          }
+          else if (res.response.length === 0) {
+            this.showPrenotazioni = false
+          } else {
+            this.myPrenotazioni = res
+            this.showPrenotazioni = true
+            console.log(this.myPrenotazioni);
+          }
+        }))
+      }else{
+        return
+      }
+
     })
   }
 
@@ -60,6 +58,13 @@ export class UserDetailsComponent {
         text: "Prenotazione eliminata con  successo!",
         icon: "success"
       })
+      if (this.myPrenotazioni.response.length === 0) {
+        this.showPrenotazioni = false;
+      }
     }))
+  }
+
+  getImgByCategories(categoria: string):string{
+      return this.corsoSvc.getImgByCategories(categoria)
   }
 }

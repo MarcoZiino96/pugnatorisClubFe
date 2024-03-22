@@ -1,5 +1,14 @@
 
-.icon i,
+.icon i{
+  color: var(--arancione);
+}
 .icon p{
   color: white;
+}
+.imgCardCorso{
+  width: 280px;
+  height: 200px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center ;
 }

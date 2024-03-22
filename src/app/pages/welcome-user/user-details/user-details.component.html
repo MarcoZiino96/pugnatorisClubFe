@@ -1,27 +1,68 @@
-<div class="container">
+<div class="container mt-3">
 
   <div class="d-flex justify-content-center">
     <a class="btn icon" routerLink="/welcomeUser">
       <i class="bi bi-door-open"></i>
-         <p>WELCOME</p>
+      <p class="fw-bold">WELCOME</p>
     </a>
   </div>
 
-  <h3 class="text-center">I tuoi corsi</h3>
-  <div class="row">
-    <div class="card col-12 col-md-6 col-xl-4 mb-2" *ngFor="let p of myPrenotazioni.response">
-      <div class="card-body">
-        <h5 class="card-title">Categoria corso: {{p.corso?.categoria}}</h5>
-        <p class="card-text">{{p.corso?.descrizione}}</p>
-        <p class="card-text">Durata:{{p.corso?.durata}}</p>
-        <p class="card-text">Data prenotazione: {{p.dataPrenotazione}}</p>
-        <p class="card-text">Data Lezione: {{p.dataScadenza}}</p>
-        <p class="card-text">{{p.turno?.giornoLezione}} la lezione:</p>
-        <p class="card-text">Inizierà alle: {{p.turno?.inizioLezione}}</p>
-        <p class="card-text">Finirà alle: {{p.turno?.fineLezione}}</p>
-        <h5>Ti aspettiamo!!!</h5>
-        <button (click)="deletePrenotazione(p.id)" class="btn btn-danger">elimina</button>
+  <h3 class="text-center text-white fw-bold">LE TUE PRENOTAZIONI</h3>
+
+  <div *ngIf="showPrenotazioni">
+
+    <div class="row">
+
+      <div class="card col-12 col-md-6 col-xl-4 mb-2" *ngFor="let p of myPrenotazioni.response">
+        <img class=" imgCardCorso rounded-top" [src]="getImgByCategories(p.corso.categoria)" alt="imdCorso">
+
+        <div class="row">
+
+          <div class="card-body text-center fw-bold">
+
+            <div>
+              <h5 class="card-title">{{p.corso.categoria}}</h5>
+            </div>
+
+            <div>
+              <p class="card-text">Pubblico</p>
+              <p class="card-text">{{p.corso.descrizione}}</p>
+            </div>
+
+            <div>
+              <p class="card-text">Durata</p>
+              <p class="card-text">{{p.corso.durata}}</p>
+            </div>
+
+            <div>
+              <p class="card-text">Ci vediamo</p>
+              <p class="card-text">{{p.turno.giornoLezione}}</p>
+              <p class="card-text">{{p.dataScadenza}}</p>
+            </div>
+
+            <div>
+              <p class="card-text">Inizierà alle</p>
+              <p class="card-text">{{p.turno.inizioLezione}}</p>
+            </div>
+
+            <div>
+              <p class="card-text">Finirà alle</p>
+              <p class="card-text">{{p.turno.fineLezione}}</p>
+            </div>
+
+            <div>
+              <button (click)="deletePrenotazione(p.id)" class="btn btn-danger">elimina</button>
+            </div>
+
+          </div>
+        </div>
       </div>
+
     </div>
+    <div class="text-center fw-bold text-white" *ngIf="!showPrenotazioni">
+      <h1>Non ci sono dettagli da visualizzare</h1>
+    </div>
+
+
   </div>
 </div>

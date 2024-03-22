@@ -5,16 +5,27 @@
   background-size: cover;
   background-position: center ;
 }
+
 .card{
   width: 280px;
+  box-shadow: 0 0 10px var(--arancione)
 }
+
 .row > *{
   padding: 0;
 }
 
-.icon i,
+.icon i{
+  color: var(--arancione);
+}
+
 .icon p{
   color: white;
+}
+
+.card-title{
+  font-weight: 700;
+  color: var(--arancione);
 }
 
 .container .d-flex .btn.icon {
@@ -23,10 +34,6 @@
   font-weight: bold;
 }
 
-.icon:hover i,
-.icon:hover p{
-  color: var(--arancione);
-}
 
 
 

@@ -93,7 +93,17 @@
 
           <div *ngIf="isLoggedIn$">
 
-            <a class=" logOut nav-link d-flex justify-content-between text-danger" (click)="logOut()">
+            <a (click)="collapsed = !collapsed" class=" nav-link d-flex justify-content-between" routerLink="/welcomeUser">
+              <li class="nav-item">
+                Welcome
+              </li>
+
+              <div class="iconCanvas">
+                <i class="bi bi-door-open"></i>
+              </div>
+            </a>
+
+            <a (click)="collapsed = !collapsed" class=" logOut nav-link d-flex justify-content-between text-danger" (click)="logOut()">
               <li class="nav-item ">
                 Logout
               </li>
@@ -103,10 +113,7 @@
               </div>
             </a>
 
-            <a class="iconCanvas" routerLink="/welcomeUser">
-              <i class="bi bi-door-open"></i>
-                 <p>WELCOME</p>
-            </a>
+
 
           </div>
 
