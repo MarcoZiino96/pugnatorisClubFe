@@ -51,21 +51,44 @@
             {{msg.email}}
           </span>
         </div>
-        <div class="form-floating">
-          <input id='password' type="password" class="form-control" formControlName="password">
-          <label>Password</label>
+
+        <div>
+
+          <div class=" form-floating d-flex align-items-center">
+
+            <input id='password' type="{{showPassword ? 'text' : 'password'}}" class="form-control" formControlName="password">
+            <label>Password</label>
+
+            <div class="btn" (click)="toggleShowPassword()">
+              <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye-fill'"></i>
+            </div>
+
+          </div>
+
           <span *ngIf="registerForm.controls['password'].dirty"
             [ngClass]="{ 'valid': isValid('password'), 'invalid': isInvalid('password') }">
             {{msg.password}}
           </span>
+
         </div>
-        <div class="form-floating">
-          <input id='confirmPassword' type="password" class="form-control" formControlName="confirmPassword">
-          <label>Conferma password</label>
+
+        <div>
+          <div class=" form-floating d-flex align-items-center">
+
+            <input id='confirmPassword' type="{{showConfirmPassword ? 'text' : 'password'}}" class="form-control" formControlName="confirmPassword">
+            <label>Conferma password</label>
+
+            <div class="btn" (click)="toggleShowConfirmPassword()">
+              <i class="bi" [ngClass]="showConfirmPassword ? 'bi-eye-slash' : 'bi-eye-fill'"></i>
+            </div>
+
+          </div>
+
           <span *ngIf="registerForm.controls['confirmPassword'].dirty" [ngClass]="{ 'valid':match, 'invalid':!match}">
             {{msg.confirmPassword}}
           </span>
         </div>
+
         <button [disabled]="registerForm.invalid" class=" btnForm  py-2 my-5" type="submit">REGISTRAMI</button>
       </form>
     </div>
@@ -77,4 +100,4 @@
         Vai al Login
       </a>
     </div>
-</div>
+  </div>

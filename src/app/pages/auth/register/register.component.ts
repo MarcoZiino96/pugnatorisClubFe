@@ -17,6 +17,8 @@ export class RegisterComponent {
   errorMsg!:IRegister;
   registered : boolean=false;
   showPassword: boolean = false;
+  showConfirmPassword: boolean = false;
+
 
   constructor(private fb:FormBuilder, private authSvc:AuthService,
     @Inject('Swal') private swal: any){
@@ -24,6 +26,7 @@ export class RegisterComponent {
 
 
   registerForm:FormGroup = this.fb.group({
+
 
     nome: this.fb.control(null,[Validators.required,Validators.minLength(3),Validators.maxLength(10),Validators.pattern(/^[a-zA-Z\s]*$/)]),
     cognome: this.fb.control(null,[Validators.required,Validators.minLength(3),Validators.maxLength(10),Validators.pattern(/^[a-zA-Z\s]*$/)]),
@@ -159,6 +162,14 @@ export class RegisterComponent {
 
   isInvalid(inputName:string){
     return !this.registerForm.get(inputName)?.valid && this.registerForm.get(inputName)?.dirty
+  }
+
+  toggleShowPassword(){
+    this.showPassword = !this.showPassword
+  }
+
+  toggleShowConfirmPassword(){
+    this.showConfirmPassword = !this.showConfirmPassword
   }
 
   register(){

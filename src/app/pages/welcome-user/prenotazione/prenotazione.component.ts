@@ -21,6 +21,7 @@ export class PrenotazioneComponent {
 
 
   iUser!: IUser;
+  accessData!:number|undefined
 
   prenotazione: ISendPrenotazione = {
     corso: 0,
@@ -81,10 +82,30 @@ export class PrenotazioneComponent {
 
   ngOnInit() {
 
-    this.route.params.subscribe((params: any) => {
-      this.authSvc.getById(params.idUtente).subscribe((res => {
+    this.authSvc.authSubject.subscribe((data) => {
+      this.accessData = data?.user.id
+    })
+
+    this.route.params.subscribe((params: any) =>{
+      if(this.accessData != params.idUtente){
+        this.swal.fire({
+          icon: "error",
+          title: "Non fare il furbo...",
+          text: "Nessun utente trovato"
+        })
+        this.router.navigate(['../../welcomeUser']);
+      }else{
+      this.authSvc.getById(params.idUtente).subscribe((res =>{
+        if (!res) {
+          this.swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Nessun utente trovato"
+          });
+        }
         this.iUser = res.response
       }))
+    }
     })
 
     this.route.params.subscribe((params: any) => {
@@ -95,17 +116,11 @@ export class PrenotazioneComponent {
       }))
 
     })
-
-
-
-
   }
 
   formTurno: FormGroup = this.fb.group({
     selectedTurno: ["", Validators.required]
   })
-
-
 
   getTurniCorso() {
     this.turnoSvc.getTurniCorso(this.iCorso.response.id).subscribe((res) => {

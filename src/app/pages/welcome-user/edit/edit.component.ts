@@ -8,6 +8,7 @@ import { catchError } from 'rxjs';
 import { IPassword } from '../../../Models/interfaceUtente/i-password';
 
 
+
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
@@ -16,16 +17,20 @@ import { IPassword } from '../../../Models/interfaceUtente/i-password';
 
 export class EditComponent {
 
-  fileUrl!: string;
-  match: boolean = false;
-  msg!: IEdit;
-  errorMsg!: IEdit;
-  msgPassword!: IPassword
-  errorMsgPassword!: IPassword
-  registered: boolean = false;
-  file!: File
-  showPass: boolean = false;
-  showEdit: boolean = true;
+  fileUrl!:string;
+  match:boolean = false;
+  msg!:IEdit;
+  errorMsg!:IEdit;
+  msgPassword!:IPassword
+  errorMsgPassword!:IPassword
+  registered:boolean = false;
+  file!:File
+  accessData!:number|undefined;
+  showPass:boolean = false;
+  showEdit:boolean = true;
+  showOldPassword:boolean = false;
+  showNewPassword:boolean = false;
+  showConfirmPassword:boolean = false
 
   iUser: IResponseData = {
     dateResponse: new Date(),
@@ -67,8 +72,22 @@ export class EditComponent {
 
 
   ngOnInit() {
-    this.route.params.subscribe((params: any) => {
-      this.authSvc.getById(params.id).subscribe((res => {
+
+
+    this.authSvc.authSubject.subscribe((data) => {
+      this.accessData = data?.user.id
+    })
+
+    this.route.params.subscribe((params: any) =>{
+      if(this.accessData != params.id){
+        this.swal.fire({
+          icon: "error",
+          title: "Non fare il furbo...",
+          text: "Nessun utente trovato"
+        })
+        this.router.navigate(['../../welcomeUser']);
+      }else{
+      this.authSvc.getById(params.id).subscribe((res =>{
         if (!res) {
           this.swal.fire({
             icon: "error",
@@ -78,13 +97,14 @@ export class EditComponent {
         }
         this.iUser = res
 
-        this.editForm.patchValue({
-          nome: this.iUser.response.nome,
-          cognome: this.iUser.response.cognome,
-          dataNascita: this.iUser.response.dataNascita,
-          email: this.iUser.response.email,
-        });
+        // this.editForm.patchValue({
+        //   nome: this.iUser.response.nome,
+        //   cognome: this.iUser.response.cognome,
+        //   dataNascita: this.iUser.response.dataNascita,
+        //   email: this.iUser.response.email,
+        // });
       }))
+    }
     })
   }
 
@@ -231,6 +251,18 @@ export class EditComponent {
 
   isInvalidFormPass(inputName: string) {
     return !this.editPasswordForm.get(inputName)?.valid && this.editPasswordForm.get(inputName)?.dirty
+  }
+
+  toggleShowOldPassword(){
+    this.showOldPassword = !this.showOldPassword
+  }
+
+  toggleShowNewPassword(){
+    this.showNewPassword = !this.showNewPassword
+  }
+
+  toggleShowConfirmPassword(){
+    this.showConfirmPassword = !this.showConfirmPassword
   }
 
   onFileSelected(event: any) {

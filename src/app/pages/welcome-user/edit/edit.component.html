@@ -16,6 +16,7 @@
       </div>
     </div>
   </div>
+
   <div *ngIf="iUser">
 
     <div *ngIf="showEdit">
@@ -25,13 +26,12 @@
 
           <div class="my-3">
             <span *ngIf="!fileUrl">
-              <img class="rounded-circle" [src]="iUser.response.fotoProfilo" alt="fotoProfilo">
+              <img class="rounded-circle" [src]="iUser.response.fotoProfilo" >
             </span>
             <span *ngIf="fileUrl">
               <img class="rounded-circle" [src]="fileUrl" alt="Anteprima immagine">
             </span>
           </div>
-
           <input class="form-control" type="file" id="fileInput" formControlName="fotoProfilo" capture
             (change)="onFileSelected($event)">
           <button (click)="editFoto()" class="btn btnForm mt-3">carica</button>
@@ -91,30 +91,60 @@
 
     <form [formGroup]="editPasswordForm">
 
-      <div class="form-floating">
-        <input id='oldPassword' type="password" class="form-control" formControlName="oldPassword">
-        <label>Old Password</label>
+      <div>
+
+        <div class="form-floating d-flex align-items-center">
+
+          <input id='oldPassword' type="{{showOldPassword ? 'text' : 'password'}}" class="form-control" formControlName="oldPassword">
+          <label>Old Password</label>
+
+          <div class="btn" (click)="toggleShowOldPassword()">
+            <i class="bi" [ngClass]="showOldPassword ? 'bi-eye-slash' : 'bi-eye-fill'"></i>
+          </div>
+
+        </div>
         <span *ngIf="editPasswordForm.controls['oldPassword'].dirty"
-          [ngClass]="{ 'valid': isValidFormPass('oldPassword'), 'invalid': isInvalidFormPass('oldPassword')}">
-          {{msgPassword.oldPassword}}
+        [ngClass]="{ 'valid': isValidFormPass('oldPassword'), 'invalid': isInvalidFormPass('oldPassword')}">
+        {{msgPassword.oldPassword}}
         </span>
+
       </div>
 
-      <div class="form-floating">
-        <input id='newPassword' type="password" class="form-control" formControlName="newPassword">
-        <label>New Password</label>
+      <div>
+
+        <div class="form-floating d-flex align-items-center">
+
+          <input id='newPassword' type="{{showNewPassword ? 'text' : 'password'}}" class="form-control" formControlName="newPassword">
+          <label>New Password</label>
+
+          <div class="btn" (click)="toggleShowNewPassword()">
+            <i class="bi" [ngClass]="showNewPassword ? 'bi-eye-slash' : 'bi-eye-fill'"></i>
+          </div>
+
+        </div>
+
         <span *ngIf="editPasswordForm.controls['newPassword'].dirty"
           [ngClass]="{ 'valid': isValidFormPass('newPassword'), 'invalid': isInvalidFormPass('newPassword') }">
           {{msgPassword.newPassword}}
         </span>
       </div>
 
-      <div class="form-floating">
-        <input id='confirmPassword' type="password" class="form-control" formControlName="confirmPassword">
-        <label>Conferma password</label>
+      <div>
+
+        <div class="form-floating d-flex align-items-center">
+
+          <input id='ConfirmPassword' type="{{showConfirmPassword ? 'text' : 'password'}}" class="form-control" formControlName="confirmPassword">
+          <label>Confirm Password</label>
+
+          <div class="btn" (click)="toggleShowConfirmPassword()">
+            <i class="bi" [ngClass]="showConfirmPassword ? 'bi-eye-slash' : 'bi-eye-fill'"></i>
+          </div>
+
+        </div>
         <span *ngIf="editPasswordForm.controls['confirmPassword'].dirty" [ngClass]="{ 'valid':match, 'invalid':!match}">
           {{msgPassword.confirmPassword}}
         </span>
+
       </div>
 
       <div class="text-center py-3">

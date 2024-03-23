@@ -38,7 +38,6 @@ export class UserDetailsComponent {
           } else {
             this.myPrenotazioni = res
             this.showPrenotazioni = true
-            console.log(this.myPrenotazioni);
           }
         }))
 
