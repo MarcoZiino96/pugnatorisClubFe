@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { IResponseData } from '../Models/interfaceUtente/i-response-data';
 import { ChangePassword } from '../Models/interfaceUtente/change-password';
 import { IResponsePrenotazione } from '../Models/interfacePrenotazione/i-response-prenotazione';
+import { IResponseArrayData } from '../Models/interfaceUtente/i-response-array-data';
 
 
 @Injectable({
@@ -26,6 +27,8 @@ export class AuthService {
   authSubject = new BehaviorSubject<IAuthData | null>(null)
   user$: Observable<IAuthData | null> = this.authSubject.asObservable();
   isLoggedIn$ = this.user$.pipe(map(user => !!user))
+  isAdmin$ = this.user$.pipe(
+    map(user => !!user && user.user.ruolo === 'ADMIN'));
 
 
   constructor(
@@ -91,6 +94,10 @@ export class AuthService {
       }
       throw error;
     }))
+  }
+
+  getAllUtenti(): Observable<IResponseArrayData>{
+    return this.http.get<IResponseArrayData>(`${this.backendUrl}/utente`)
   }
 
   edit(id:number,bodyRequest:IRegister):Observable<IResponseData> | undefined{

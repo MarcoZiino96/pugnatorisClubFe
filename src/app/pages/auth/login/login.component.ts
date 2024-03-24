@@ -15,6 +15,7 @@ export class LoginComponent {
   msg!:ILogin;
   errorMsg!:ILogin;
   userError:boolean=false;
+  showPassword:boolean=false;
 
 
   constructor(private fb:FormBuilder, private authSvc:AuthService, private router: Router,@Inject('Swal') private swal: any){}
@@ -83,6 +84,10 @@ export class LoginComponent {
 
   isInvalid(inputName:string){
     return !this.loginForm.get(inputName)?.valid && this.loginForm.get(inputName)?.dirty
+  }
+
+  toggleShowPassword(){
+    this.showPassword = !this.showPassword
   }
 
   logIn(){

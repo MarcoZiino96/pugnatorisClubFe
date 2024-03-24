@@ -20,11 +20,17 @@
 
       </div>
 
-      <div class="form-floating">
-        <input id='password' type="password" class="form-control" formControlName="password">
-        <label>
-          Password
-        </label>
+      <div>
+        <div class=" form-floating d-flex align-items-center">
+
+          <input id='password' type="{{showPassword ? 'text' : 'password'}}" class="form-control" formControlName="password">
+          <label>Password</label>
+
+          <div class="btn" (click)="toggleShowPassword()">
+            <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye-fill'"></i>
+          </div>
+
+        </div>
         <span *ngIf="loginForm.controls['password'].dirty"
           [ngClass]="{ 'valid': isValid('password'), 'invalid': isInvalid('password') }">
           {{msg.password}}

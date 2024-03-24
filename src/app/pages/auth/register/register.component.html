@@ -89,15 +89,20 @@
           </span>
         </div>
 
-        <button [disabled]="registerForm.invalid" class=" btnForm  py-2 my-5" type="submit">REGISTRAMI</button>
+        <button [disabled]="!registerForm.valid" class=" btnForm  p-2 my-5" type="submit">REGISTRAMI</button>
       </form>
     </div>
 
-    <div *ngIf="registered">
-      <h2 class="fw-bold mb-5">Ciao {{this.registerForm.value['username']}}. La registrazione è avvenuta con successo!
-      </h2>
-      <a type="submit" routerLink="../../auth/login" class="btn btnForm">
-        Vai al Login
-      </a>
+
+    <div class="my-5" *ngIf="registered">
+      <div class="container animate__animated animate__lightSpeedInLeft animate_slow">
+        <h2 class="fw-bold mb-5 text-white">Benvenuto <span class="nameRegistered">{{this.registerForm.value['username']}}.</span> La registrazione è avvenuta con successo!
+        </h2>
+        <a type="submit" routerLink="../../auth/login" class="text-decoration-none p-2 btnForm">
+          Vai al Login
+        </a>
+      </div>
+
+
     </div>
   </div>

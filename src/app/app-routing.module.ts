@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { WelcomeGuard } from './guard/welcome.guard';
+import { WelcomeAdminGuard } from './guard/welcome-admin.guard';
 
 const routes: Routes = [
   {
@@ -18,11 +19,11 @@ const routes: Routes = [
 {
   path: 'welcomeUser',
   loadChildren: () => import('./pages/welcome-user/welcome-user.module').then(m => m.WelcomeUserModule),
-  canActivate: [WelcomeGuard],
-  canActivateChild: [WelcomeGuard]
+  canActivate: [WelcomeGuard]
 },
 {
-  path: 'welcomeAdmin', loadChildren: () => import('./pages/welcome-admin/welcome-admin.module').then(m => m.WelcomeAdminModule)
+  path: 'welcomeAdmin', loadChildren: () => import('./pages/welcome-admin/welcome-admin.module').then(m => m.WelcomeAdminModule),
+  canActivate:[WelcomeAdminGuard]
 }
 ];
 

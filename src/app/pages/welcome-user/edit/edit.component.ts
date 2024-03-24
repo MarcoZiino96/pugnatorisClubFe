@@ -97,12 +97,12 @@ export class EditComponent {
         }
         this.iUser = res
 
-        // this.editForm.patchValue({
-        //   nome: this.iUser.response.nome,
-        //   cognome: this.iUser.response.cognome,
-        //   dataNascita: this.iUser.response.dataNascita,
-        //   email: this.iUser.response.email,
-        // });
+        this.editForm.patchValue({
+          nome: this.iUser.response.nome,
+          cognome: this.iUser.response.cognome,
+          dataNascita: this.iUser.response.dataNascita,
+          email: this.iUser.response.email,
+        });
       }))
     }
     })
