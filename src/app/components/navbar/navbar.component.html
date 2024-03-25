@@ -103,6 +103,16 @@
               </div>
             </a>
 
+            <a *ngIf="isAdmin$" (click)="collapsed = !collapsed" class=" nav-link d-flex justify-content-between" routerLink="/welcomeAdmin">
+              <li class="nav-item">
+                Area Riservata
+              </li>
+
+              <div class="iconCanvas">
+                <i class="bi bi-file-lock2"></i>
+              </div>
+            </a>
+
             <a (click)="collapsed = !collapsed" class=" logOut nav-link d-flex justify-content-between text-danger" (click)="logOut()">
               <li class="nav-item ">
                 Logout

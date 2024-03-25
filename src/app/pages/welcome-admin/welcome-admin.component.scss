@@ -1,10 +1,14 @@
 .card-title{
   font-weight: 700;
-  color: var(--arancione);
 }
 
-.imgCardCorso{
-  width: 280px;
+.row > *{
+  padding: 0;
+}
+
+
+.imgCardUser{
+  width: 200px;
   height: 200px;
   background-repeat: no-repeat;
   background-size: cover;
@@ -12,6 +16,16 @@
 }
 
 .card{
-  width: 280px;
+  width: 250px;
   box-shadow: 0 0 10px var(--arancione)
 }
+
+.card-body{
+  padding: 20px;
+}
+
+.card p.card-text{
+  margin: 0;
+  color: var(--arancione);
+}
+

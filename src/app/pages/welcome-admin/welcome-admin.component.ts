@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { AuthService } from '../../Services/auth.service';
-import { IUser } from '../../Models/interfaceUtente/i-user';
+import { ICompleteUser } from '../../Models/interfaceUtente/i-complete-user';
 
 @Component({
   selector: 'app-welcome-admin',
@@ -9,15 +9,28 @@ import { IUser } from '../../Models/interfaceUtente/i-user';
 })
 export class WelcomeAdminComponent {
 
-  iUsers!:IUser[]
-  constructor(private authSvc:AuthService){}
+  iUsers!:ICompleteUser[]
+
+  constructor(
+    private authSvc:AuthService,
+    @Inject('Swal') private swal: any
+    ){}
 
 
   ngOnInit(){
     this.authSvc.getAllUtenti().subscribe((users) =>{
       this.iUsers = users.response
-      console.log(this.iUsers);
+    })
+  }
 
+  deleteUtente(id:number){
+    this.authSvc.deleteUtente(id).subscribe((user)=>{
+      this.iUsers = this.iUsers.filter(user => user.id != id)
+      this.swal.fire({
+        title: "Good job!",
+        text: "Utente eliminato con  successo!",
+        icon: "success"
+      })
     })
   }
 }

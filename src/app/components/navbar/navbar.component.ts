@@ -12,11 +12,13 @@ export class NavbarComponent {
 
   collapsed:boolean = false;
   isLoggedIn$!:boolean;
+  isAdmin$!:boolean;
   isNavbarTransparent:boolean = true;
   isNavbarBlack:boolean = false;
 
   ngOnInit(){
     this.authSvc.isLoggedIn$.subscribe(data=> this.isLoggedIn$ = data)
+    this.authSvc.isAdmin$.subscribe(data => this.isAdmin$ = data)
   }
   logOut():void{
     this.authSvc.logout();

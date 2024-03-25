@@ -96,6 +96,10 @@ export class AuthService {
     }))
   }
 
+  deleteUtente(id:number):Observable<void>{
+    return  this.http.delete<void>(`${this.backendUrl}/utente/delete/${id}`)
+  }
+
   getAllUtenti(): Observable<IResponseArrayData>{
     return this.http.get<IResponseArrayData>(`${this.backendUrl}/utente`)
   }
@@ -114,7 +118,7 @@ export class AuthService {
     return this.http.patch(`${environment.backEndUrl}/utente/edit/password/${id}`, password);
 }
 
-getPrenotazioni(id:number):Observable<IResponsePrenotazione>{
+ getPrenotazioni(id:number):Observable<IResponsePrenotazione>{
   return this.http.get<IResponsePrenotazione>(`${environment.backEndUrl}/utente/prenotazioni/${id}`);
 }
 

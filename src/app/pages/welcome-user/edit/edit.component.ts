@@ -304,7 +304,7 @@ export class EditComponent {
               this.swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: "Qualcosa è andato storto, la foto non è stata caricata!"
+                text: "Qualcosa è andato storto, la modifica non è andata a buon fine!"
               })
             } else {
               this.swal.fire({
@@ -363,6 +363,7 @@ export class EditComponent {
     })
   }
 
+
   editPassword() {
     const passwordFormData: any = this.editPasswordForm.value;
     delete passwordFormData.confirmPassword
@@ -399,13 +400,6 @@ export class EditComponent {
                   text: "La vecchia password è uguale alla nuova password"
                 });
                 this.editPasswordForm.reset();
-              }
-              else {
-                this.swal.fire({
-                  icon: "error",
-                  title: "Oops...",
-                  text: "Problemi di comunicazione con il server, controlla la tua conessione!"
-                });
               }
               throw error;
             }))

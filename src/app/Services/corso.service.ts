@@ -43,30 +43,8 @@ export class CorsoService {
         return '../../assets/img/kick-boxing.jpeg';
       case 'MUAY_THAI':
         return '../../assets/img/muay-thay.jpeg';
-      case 'TAEKWONDO':
-        return '../../assets/img/taekwondo.jpeg';
-      case 'KARATE':
-        return '../../assets/img/karate.jpeg';
-      case 'JUDO':
-        return '../../assets/img/judo.jpeg';
-      case 'AIKIDO':
-        return '../../assets/img/aikido.jpeg';
-      case 'JIU_JITSU_BRASILIANO':
-        return '../../assets/img/jiu-jitsu-brasiliano.jpeg';
-      case 'KUNG_FU':
-        return '../../../assets/img/kung-fu.png';
-      case 'WUSHU':
-        return '../../assets/img/wushu.jpeg';
-      case 'CAPOEIRA':
-        return '../../../assets/img/capoeira.png';
-      case 'KRAV_MAGA':
-        return '../../../assets/img/krav-maga.png';
-      case 'KENDO':
-        return '../../../assets/img/kendo.png';
-      case 'SANSHOU':
-        return '../../../assets/img/sanshou.png';
-      case 'ESKRIMA':
-        return '../../assets/img/eskrima.jpeg';
+      case 'MMA_GRAPPLING':
+        return '../../assets/img/mma-grappling.jpeg';
       default:
         return 'https://picsum.photos/200/300?random=1';
     }
