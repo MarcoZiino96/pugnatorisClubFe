@@ -2,12 +2,12 @@
 
   <div class=" boxLink d-flex justify-content-center">
 
-      <a class=" btn icon" [routerLink]="['/welcomeUser/edit/',iUser.id]">
+      <a class=" btn icon" [routerLink]="['/welcomeUser/edit/',accessData]">
         <i class="bi bi-pencil-square"></i>
         <p> MODIFICA</p>
       </a>
 
-      <a class="btn icon" [routerLink]="['/welcomeUser/user-details/',iUser.id]">
+      <a class="btn icon" [routerLink]="['/welcomeUser/user-details/',accessData]">
         <i class="bi bi-ticket-detailed"></i>
         <p>DETTAGLI</p>
       </a>
@@ -28,7 +28,7 @@
         <p class="card-text">{{c.descrizione}}</p>
         <p class="card-text">Periodicità:{{c.durata}}</p>
         <div class="text-center">
-        <a [routerLink]="['/welcomeUser/prenotazione',iUser.id,  c.id]" class=" text-decoration-none btnForm p-2"> Scopri di più</a>
+        <a [routerLink]="['/welcomeUser/prenotazione',accessData,  c.id]" class=" text-decoration-none btnForm p-2"> Scopri di più</a>
         </div>
       </div>
 

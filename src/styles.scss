@@ -11,6 +11,11 @@
   --black:#171D29;
   --white:#c0c2c4;
 }
+
+body{
+  background: radial-gradient(circle, rgba(23,29,41,1) 69%, rgba(13,11,9,1) 100%);
+}
+
 *{
   font-family: "Spectral", serif;
 }
@@ -24,12 +29,6 @@
 }
 
 // stile generale per i form
-
-.boxApp{
-  background: radial-gradient(circle, rgba(23,29,41,1) 69%, rgba(13,11,9,1) 100%);
-  height: 100%;
-  padding-bottom: 10px;
-}
 
 .titleForm{
   color: var(--arancione);

@@ -26,9 +26,8 @@ export class PrenotazioneComponent {
   prenotazione: ISendPrenotazione = {
     corso: 0,
     utente: 0,
-    turno: 0,
+    turno: 0
   }
-
   iTurni: IResponseTurno = {
     dateResponse: new Date(),
     message: '',
@@ -68,6 +67,8 @@ export class PrenotazioneComponent {
       maestro: null
     }
   }
+
+
 
   constructor(
     private corsoSvc: CorsoService,
@@ -132,10 +133,7 @@ export class PrenotazioneComponent {
 
     const selectTurnoId = this.formTurno.get('selectedTurno')?.value;
 
-    this.turnoSvc.getById(selectTurnoId).subscribe((res) => {
-      this.iTurno = res
-
-      this.prenotazione.turno = this.iTurno.response.id
+      this.prenotazione.turno = selectTurnoId
       this.prenotazione.utente = this.iUser.id
       this.prenotazione.corso = this.iCorso.response.id
 
@@ -157,8 +155,6 @@ export class PrenotazioneComponent {
           throw error;
         })))
         .subscribe((data) => {
-          console.log(data);
-
           if (data) {
             this.swal.fire({
               title: "Good job!",
@@ -174,7 +170,6 @@ export class PrenotazioneComponent {
             })
           }
         })
-    })
   }
 
   getImgByCategories(categoria: string) {

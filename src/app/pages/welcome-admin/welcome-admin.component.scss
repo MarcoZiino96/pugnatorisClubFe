@@ -6,10 +6,9 @@
   padding: 0;
 }
 
-
 .imgCardUser{
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 180px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center ;
@@ -27,5 +26,15 @@
 .card p.card-text{
   margin: 0;
   color: var(--arancione);
+}
+
+a i.bi.bi-plus{
+  color: var(--arancione);
+  font-size: 2rem;
+}
+
+a i.bi.bi-trash2-fill{
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 

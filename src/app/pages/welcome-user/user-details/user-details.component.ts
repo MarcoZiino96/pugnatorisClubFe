@@ -62,7 +62,7 @@ export class UserDetailsComponent {
 
 
   deletePrenotazione(id: number) {
-    this.prenotazioneSvc.deletePrenotazione(id).subscribe((res => {
+    this.prenotazioneSvc.deletePrenotazione(id).subscribe(( () => {
       this.myPrenotazioni.response = this.myPrenotazioni.response.filter(res =>
         res.id != id
       )

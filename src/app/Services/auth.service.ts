@@ -12,6 +12,7 @@ import { IResponseData } from '../Models/interfaceUtente/i-response-data';
 import { ChangePassword } from '../Models/interfaceUtente/change-password';
 import { IResponsePrenotazione } from '../Models/interfacePrenotazione/i-response-prenotazione';
 import { IResponseArrayData } from '../Models/interfaceUtente/i-response-array-data';
+import { IResponseAbbonamento } from '../Models/interfaceAbbonamento/i-response-abbonamento';
 
 
 @Injectable({
@@ -120,6 +121,10 @@ export class AuthService {
 
  getPrenotazioni(id:number):Observable<IResponsePrenotazione>{
   return this.http.get<IResponsePrenotazione>(`${environment.backEndUrl}/utente/prenotazioni/${id}`);
+}
+
+getAbbonamenti(id:number){
+  return this.http.get<IResponseAbbonamento>(`${environment.backEndUrl}/utente/abbonamenti/${id}`);
 }
 
 }

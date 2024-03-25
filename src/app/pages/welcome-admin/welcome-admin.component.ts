@@ -24,7 +24,7 @@ export class WelcomeAdminComponent {
   }
 
   deleteUtente(id:number){
-    this.authSvc.deleteUtente(id).subscribe((user)=>{
+    this.authSvc.deleteUtente(id).subscribe(()=>{
       this.iUsers = this.iUsers.filter(user => user.id != id)
       this.swal.fire({
         title: "Good job!",

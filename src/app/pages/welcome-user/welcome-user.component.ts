@@ -4,6 +4,7 @@ import { IAuthData } from '../../Models/interfaceUtente/i-auth-data';
 import { IUser } from '../../Models/interfaceUtente/i-user';
 import { CorsoService } from '../../Services/corso.service';
 import { ICorso } from '../../Models/interfaceCorso/i-corso';
+import { AuthService } from '../../Services/auth.service';
 
 
 
@@ -16,16 +17,19 @@ import { ICorso } from '../../Models/interfaceCorso/i-corso';
 })
 export class WelcomeUserComponent {
 
-  iUser!:IUser;
   iCorsi!:ICorso[];
+  accessData!:number|undefined
 
-  constructor(private corsoSvc:CorsoService){}
+  constructor(
+    private corsoSvc:CorsoService,
+    private authSvc:AuthService
+    ){}
 
   ngOnInit(){
-   let stringUser:string|null = localStorage.getItem("accessData");
-    if(!stringUser) return;
-    let user:IAuthData = JSON.parse(stringUser)
-     this.iUser = user.user
+
+    this.authSvc.authSubject.subscribe((data) => {
+      this.accessData = data?.user.id
+    })
 
      this.getAllCorsi();
  }

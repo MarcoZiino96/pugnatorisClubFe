@@ -1,8 +1,10 @@
-import { ICorso } from "../interfaceCorso/i-corso";
-import { IUser } from "../interfaceUtente/i-user";
+import { ICorso } from './../interfaceCorso/i-corso';
+import { ICompleteUser } from "../interfaceUtente/i-complete-user";
 
 export interface IAbbonamento {
+  id:number;
   durata:string;
-  corso:number;
-  utente:number;
+  corso:ICorso;
+  utente:ICompleteUser;
 }
+
