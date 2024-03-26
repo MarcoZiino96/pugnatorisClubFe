@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from './../../../Services/auth.service';
 import { Component, Inject } from '@angular/core';
 import { IAbbonamento } from '../../../Models/interfaceAbbonamento/i-abbonamento';
+import { IUser } from '../../../Models/interfaceUtente/i-user';
 
 @Component({
   selector: 'app-details',
@@ -12,6 +13,8 @@ import { IAbbonamento } from '../../../Models/interfaceAbbonamento/i-abbonamento
 export class DetailsComponent {
 
   abbonamenti!:IAbbonamento[];
+  user!:IUser;
+  showAbbonamenti!:boolean;
 
   constructor (
     private authSvc:AuthService,
@@ -21,9 +24,21 @@ export class DetailsComponent {
   ){}
 
   ngOnInit(){
+    this.route.params.subscribe((params:any)=>{
+      this.authSvc.getById(params.id).subscribe((res)=>{
+        this.user = res.response
+      })
+    })
+
     this.route.params.subscribe((params:any) => {
       this.authSvc.getAbbonamenti(params.id).subscribe((res)=>{
-        this.abbonamenti = res.response
+        if(res.response.length === 0 ){
+          this.showAbbonamenti = false
+        }else{
+          this.abbonamenti = res.response
+          this.showAbbonamenti = true
+        }
+
       })
     })
   }
@@ -34,7 +49,8 @@ export class DetailsComponent {
       this.swal.fire({
         title: "Good job!",
         text: "Abbonamento eliminato con  successo!",
-        icon: "success"
+        icon: "success",
+        confirmButtonText: "Chiudi"
       })
     })
   }

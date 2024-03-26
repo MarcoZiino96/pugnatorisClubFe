@@ -55,3 +55,17 @@ color: var(--arancione);
 }
 
 
+.swal2-title {
+  color:var(--arancione);
+}
+
+.swal2-confirm:not([disabled]) {
+  background-color:var(--arancione);
+}
+
+.swal2-popup {
+  box-shadow: 0 0 15px var(--arancione);
+}
+
+
+

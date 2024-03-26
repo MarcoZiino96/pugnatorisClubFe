@@ -6,5 +6,8 @@ export interface IAbbonamento {
   durata:string;
   corso:ICorso;
   utente:ICompleteUser;
+  dataAttivazione:string;
+  dataScadenza:string;
+  costoAbbonamento:number;
 }
 

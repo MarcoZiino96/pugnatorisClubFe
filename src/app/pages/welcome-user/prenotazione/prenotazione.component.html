@@ -8,9 +8,15 @@
   </div>
 
   <div class="row gap-3 justify-content-center">
+
+    <h5 class="fw-bold text-white text-center"> Fai una prenotazione</h5>
+
     <div class="card text-center col-12 col-md-6 col-xl-4 mb-2">
+
+
+
       <div>
-        <img [src]="getImgByCategories(iCorso.response.categoria)" class="card-img-top imgCard" alt="fotoCategoria">
+        <img [src]="getImgByCategories(iCorso.response.categoria)" class="card-img-top imgCardCorso" alt="fotoCategoria">
       </div>
       <div class="card-body text-center fw-bold">
         <h5 class="card-title">{{iCorso.response.categoria}}</h5>
@@ -31,7 +37,7 @@
       </option>
     </select>
     <div class="text-center py-2">
-    <button [disabled]="!formTurno.valid" (click)="sendPrenotazione()" class="btn btnPren">Prenota</button>
+    <button [disabled]="!formTurno.valid" (click)="sendPrenotazione()" class=" btn btnPren">Prenota</button>
     </div>
   </form>
 </div>

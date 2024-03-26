@@ -14,9 +14,13 @@
   color: white;
 }
 
+hr{
+  border: 1px solid var(--arancione);
+}
+
 .form-select:focus {
   background-color: var(--arancione);
-box-shadow: 0 0 10px var(--arancione);
+ box-shadow: 0 0 15px var(--arancione);
 }
 
 .imgCardUser{

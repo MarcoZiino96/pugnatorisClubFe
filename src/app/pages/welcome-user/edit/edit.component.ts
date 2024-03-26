@@ -17,20 +17,20 @@ import { IPassword } from '../../../Models/interfaceUtente/i-password';
 
 export class EditComponent {
 
-  fileUrl!:string;
-  match:boolean = false;
-  msg!:IEdit;
-  errorMsg!:IEdit;
-  msgPassword!:IPassword
-  errorMsgPassword!:IPassword
-  registered:boolean = false;
-  file!:File
-  accessData!:number|undefined;
-  showPass:boolean = false;
-  showEdit:boolean = true;
-  showOldPassword:boolean = false;
-  showNewPassword:boolean = false;
-  showConfirmPassword:boolean = false
+  fileUrl!: string;
+  match: boolean = false;
+  msg!: IEdit;
+  errorMsg!: IEdit;
+  msgPassword!: IPassword
+  errorMsgPassword!: IPassword
+  registered: boolean = false;
+  file!: File
+  accessData!: number | undefined;
+  showPass: boolean = false;
+  showEdit: boolean = true;
+  showOldPassword: boolean = false;
+  showNewPassword: boolean = false;
+  showConfirmPassword: boolean = false
 
   iUser: IResponseData = {
     dateResponse: new Date(),
@@ -78,33 +78,33 @@ export class EditComponent {
       this.accessData = data?.user.id
     })
 
-    this.route.params.subscribe((params: any) =>{
-      if(this.accessData != params.id){
+    this.route.params.subscribe((params: any) => {
+      if (this.accessData != params.id) {
         this.swal.fire({
           icon: "error",
           title: "Non fare il furbo...",
           text: "Nessun utente trovato"
         })
         this.router.navigate(['../../welcomeUser']);
-      }else{
-      this.authSvc.getById(params.id).subscribe((res =>{
-        if (!res) {
-          this.swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Nessun utente trovato"
-          });
-        }
-        this.iUser = res
+      } else {
+        this.authSvc.getById(params.id).subscribe((res => {
+          if (!res) {
+            this.swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Nessun utente trovato"
+            });
+          }
+          this.iUser = res
 
-        this.editForm.patchValue({
-          nome: this.iUser.response.nome,
-          cognome: this.iUser.response.cognome,
-          dataNascita: this.iUser.response.dataNascita,
-          email: this.iUser.response.email,
-        });
-      }))
-    }
+          this.editForm.patchValue({
+            nome: this.iUser.response.nome,
+            cognome: this.iUser.response.cognome,
+            dataNascita: this.iUser.response.dataNascita,
+            email: this.iUser.response.email,
+          });
+        }))
+      }
     })
   }
 
@@ -253,28 +253,28 @@ export class EditComponent {
     return !this.editPasswordForm.get(inputName)?.valid && this.editPasswordForm.get(inputName)?.dirty
   }
 
-  toggleShowOldPassword(){
+  toggleShowOldPassword() {
     this.showOldPassword = !this.showOldPassword
   }
 
-  toggleShowNewPassword(){
+  toggleShowNewPassword() {
     this.showNewPassword = !this.showNewPassword
   }
 
-  toggleShowConfirmPassword(){
+  toggleShowConfirmPassword() {
     this.showConfirmPassword = !this.showConfirmPassword
   }
 
   onFileSelected(event: any) {
     this.file = event.target.files[0];
 
-    if(this.file){
-      const READER=new FileReader();
+    if (this.file) {
+      const READER = new FileReader();
       READER.readAsDataURL(this.file);
-      READER.onload=()=>{
-      this.fileUrl = READER.result as string;
-    };
-  }
+      READER.onload = () => {
+        this.fileUrl = READER.result as string;
+      };
+    }
   }
 
   edit() {
@@ -384,7 +384,7 @@ export class EditComponent {
                 });
 
                 this.editPasswordForm.reset();
-              } if (error.error.message === "[campo obbligatorio, campo obbligatorio]" || error.error.message === "[campo obbligatorio]"){
+              } if (error.error.message === "[campo obbligatorio, campo obbligatorio]" || error.error.message === "[campo obbligatorio]") {
                 this.swal.fire({
                   icon: "error",
                   title: "Oops...",

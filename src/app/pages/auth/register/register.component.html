@@ -4,10 +4,9 @@
 
 
     <div *ngIf="!registered">
+      <form [formGroup]="registerForm">
 
-      <form [formGroup]="registerForm" (ngSubmit)="register()">
-
-        <h3 class=" titleForm text-center mb-4">REGISTRAZIONE</h3>
+        <h3 class=" titleForm text-center my-4">REGISTRAZIONE</h3>
 
         <div class="form-floating">
           <input id="nome" type="text" class="form-control" formControlName="nome">
@@ -89,7 +88,7 @@
           </span>
         </div>
 
-        <button [disabled]="!registerForm.valid" class=" btnForm  p-2 my-5" type="submit">REGISTRAMI</button>
+        <button  [disabled]="!registerForm.valid" (click)="register()" class="btnForm p-2 my-5">REGISTRAMI</button>
       </form>
     </div>
 

@@ -4,6 +4,7 @@ import { AuthService } from '../../../Services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IResponsePrenotazione } from '../../../Models/interfacePrenotazione/i-response-prenotazione';
 import { PrenotazioneService } from '../../../Services/prenotazione.service';
+import { IAbbonamento } from '../../../Models/interfaceAbbonamento/i-abbonamento';
 
 @Component({
   selector: 'app-user-details',
@@ -12,6 +13,8 @@ import { PrenotazioneService } from '../../../Services/prenotazione.service';
 })
 export class UserDetailsComponent {
   showPrenotazioni!: boolean;
+  showAbbonamenti!:boolean;
+  abbonamenti!:IAbbonamento[];
   myPrenotazioni!: IResponsePrenotazione
   accessData!: number | undefined
 
@@ -58,8 +61,36 @@ export class UserDetailsComponent {
         })
       }
     })
-  }
 
+    this.route.params.subscribe((params: any) => {
+      if (this.accessData != params.id) {
+        this.swal.fire({
+          icon: "error",
+          title: "Non fare il furbo...",
+          text: "Nessun utente trovato"
+        })
+        this.router.navigate(['../../welcomeUser']);
+      } else {
+        this.route.params.subscribe((params: any) => {
+          this.authSvc.getAbbonamenti(params.id).subscribe((res => {
+            if (!res) {
+              this.swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Problemi di comunicazione con il server, controlla la tua conessione"
+              });
+            }
+            else if (res.response.length === 0) {
+              this.showAbbonamenti = false
+            } else {
+              this.abbonamenti = res.response
+              this.showAbbonamenti = true
+            }
+          }))
+        })
+      }
+    })
+  }
 
   deletePrenotazione(id: number) {
     this.prenotazioneSvc.deletePrenotazione(id).subscribe(( () => {

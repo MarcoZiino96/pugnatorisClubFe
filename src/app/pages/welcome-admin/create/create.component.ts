@@ -17,7 +17,17 @@ import { ISendAbbonamento } from '../../../Models/interfaceAbbonamento/i-send-ab
 })
 export class CreateComponent{
 
-  iUser!: IUser;
+  iUser: IUser={
+    id: 0,
+    password: '',
+    ruolo: '',
+    nome: '',
+    cognome: '',
+    email: '',
+    fotoProfilo: null,
+    dataNascita: null,
+  };
+
   iCorso!:ICorso[];
   abbonamento:ISendAbbonamento ={
     corso:0,
@@ -44,6 +54,7 @@ export class CreateComponent{
             icon: "error",
             title: "Oops...",
             text: "Nessun utente trovato"
+
           });
         }
         this.iUser = res.response
@@ -76,13 +87,15 @@ export class CreateComponent{
         this.swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Questo utente ha gia una abbonamento per questo corso"
+          text: "Questo utente ha gia una abbonamento per questo corso",
+          confirmButtonText: "Chiudi"
         })
       } if (error.error.message === "Il corso ha raggiunto il numero massimo di partecipanti") {
         this.swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Il corso ha raggiunto il numero massimo di partecipanti"
+          text: "Il corso ha raggiunto il numero massimo di partecipanti",
+          confirmButtonText: "Chiudi"
         })
       }
       throw error;
@@ -91,14 +104,16 @@ export class CreateComponent{
         this.swal.fire({
           title: "Good job!",
           text: "Abbonamento aggiunto con successo!",
-          icon: "success"
+          icon: "success",
+          confirmButtonText: "Chiudi"
         })
         this.router.navigate(['../../welcomeAdmin'])
       } else {
         this.swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Qualcosa è andato storto"
+          text: "Qualcosa è andato storto",
+          confirmButtonText: "Chiudi"
         })
       }
     })
