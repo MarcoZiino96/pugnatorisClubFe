@@ -9,7 +9,7 @@
 
   <div class="row gap-3 justify-content-center">
 
-    <h5 class="fw-bold text-white text-center"> Fai una prenotazione</h5>
+    <h3 class=" animate__animated animate__flash animate__delay-1s fw-bold text-white text-center"> Fai una prenotazione</h3>
 
     <div class="card text-center col-12 col-md-6 col-xl-4 mb-2">
 
@@ -18,10 +18,17 @@
       <div>
         <img [src]="getImgByCategories(iCorso.response.categoria)" class="card-img-top imgCardCorso" alt="fotoCategoria">
       </div>
-      <div class="card-body text-center fw-bold">
+      <div class="card-body text-center">
         <h5 class="card-title">{{iCorso.response.categoria}}</h5>
-        <p class="card-text">{{iCorso.response.descrizione}}</p>
-        <p class="card-text">Durata:{{iCorso.response.durata}}</p>
+        <p class="card-text">
+          {{iCorso.response.descrizione}}</p>
+        <p class="card-text">
+          <span class="fw-bold">Durata:</span>
+          {{iCorso.response.durata}}</p>
+        <p class="card-text">
+          <span class="fw-bold">Costo mensile:</span> {{iCorso.response.costoMensile}}€
+        </p>
+
       </div>
     </div>
   </div>
